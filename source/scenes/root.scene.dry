@@ -46,27 +46,23 @@ Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
 // factions
-Q.factions = ['left', 'center', 'labor', 'reformist', 'neorevisionist'];
+Q.factions = ['left', 'labor', 'reformist', 'green'];
 // should this be normalized to 100%?
 Q.left_strength = 15;
 Q.left_dissent = 20;
-Q.center_strength = 30;
-Q.center_dissent = 0;
 Q.labor_strength = 25;
 Q.labor_dissent = 5;
 Q.reformist_strength = 25;
 Q.reformist_dissent = 5;
-Q.neorevisionist_strength = 5;
-Q.neorevisionist_dissent = 10;
+Q.green_strength = 5;
+Q.green_dissent = 10;
 
 // secret events...
 Q.unions_independent = 0;
-Q.centrists_resign = 0;
+Q.green_resign = 0;
 Q.left_split = 0;
 Q.reformists_resigned = 0;
 
-// have we discovered neorevisionism?
-Q.neorevisionism = 0;
 
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
@@ -101,21 +97,20 @@ Q.moderate_plan_adopted = 0;
 // organizations
 
 // inter-party relations
-Q.z_relation = 50;
-Q.kpd_relation = 25;
-Q.ddp_relation = 60;
-Q.dvp_relation = 35;
+Q.cvp_relation = 50;
+Q.lspd_relation = 25;
+Q.rdp_relation = 60;
+Q.csrp_relation = 60
+Q.nlp_relation = 35;
 // DNVP and NSDAP are invariably hostile
 Q.DNVP_relation = 10;
-Q.NSDAP_relation = 0;
+Q.NDPD_relation = 0;
 
-Q.kpd_leader = "Thälmann";
+Q.lspd_leader = "Thälmann";
 // alternative is the Conciliators as party leader
-Q.kpd_party_leader = "Thälmann";
-Q.z_leader = "Brüning";
+Q.cvp_leader = "Ursula";
 // party leader - can be Ludwig Kaas, Joseph Joos, or Adam Stegerwald after the 1928 December conference. Joos will be most friendly to the SPD.
-Q.z_party_leader = "Marx";
-Q.nsdap_leader = "Hitler";
+Q.ndpd_leader = "Franz";
 
 // hmm... maybe we can play nice with Hindenburg???
 Q.hindenburg_relation = 25;
@@ -170,7 +165,7 @@ Q.nationalism = 60;
 // socialism vs capitalism
 Q.socialism = 40;
 // pro-republic vs anti-republic
-Q.pro_republic = 59;
+Q.pro_eu = 59;
 
 Q.emergency_rule = 0;
 
@@ -228,7 +223,7 @@ Q.old_middle_qol = 100;
 Q.new_middle_qol = 100;
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
+Q.parties = ['spd', 'lspd', 'csrp', 'rdp', 'cvp', 'nlp', 'dnvp', 'ndpd', 'other'];
 
 // TODO: add 'sapd' later on
 Q.sapd_formed = 0;
@@ -236,57 +231,62 @@ Q.sapd_formed = 0;
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
 Q.workers_spd = 60;
-Q.workers_kpd = 20;
-Q.workers_z = 5;
-Q.workers_ddp = 0;
-Q.workers_dvp = 0;
+Q.workers_lspd = 20;
+Q.workers_csrp = 5;
+Q.workers_rdp = 0;
+Q.workers_cvp = 0;
+Q.workers_nlp = 0;
 Q.workers_dnvp = 5;
-Q.workers_nsdap = 0;
+Q.workers_ndpd = 0;
 Q.workers_other = 10;
 
 Q.old_middle_spd = 5;
-Q.old_middle_kpd = 0;
-Q.old_middle_z = 5;
-Q.old_middle_ddp= 10;
-Q.old_middle_dvp = 25;
+Q.old_middle_lsdp = 0;
+Q.old_middle_csrp = 5;
+Q.old_middle_rdp = 10;
+Q.old_middle_cvp = 15;
+Q.old_middle_nlp = 10;
 Q.old_middle_dnvp = 25;
-Q.old_middle_nsdap = 10;
+Q.old_middle_ndpd = 10;
 Q.old_middle_other = 10;
 
 Q.new_middle_spd = 5;
-Q.new_middle_kpd = 1;
-Q.new_middle_z = 10;
-Q.new_middle_ddp= 25;
-Q.new_middle_dvp = 25;
+Q.new_middle_lspd = 1;
+Q.new_middle_csrp = 10;
+Q.new_middle_rdp = 25;
+Q.new_middle_nlp = 25;
 Q.new_middle_dnvp = 10;
-Q.new_middle_nsdap = 5;
+Q.new_middle_ndpd = 5;
 Q.new_middle_other = 15;
 
 Q.rural_spd = 10;
-Q.rural_kpd = 0;
-Q.rural_z = 5;
-Q.rural_ddp= 5;
-Q.rural_dvp = 15;
-Q.rural_dnvp = 45;
+Q.rural_lspd = 0;
+Q.rural_cvp = 5;
+Q.rural_rdp = 5;
+Q.rural_cvp = 15;
+Q.rural_nlp = 5;
+Q.rural_dnvp = 40;
 Q.rural_nsdap = 5;
 Q.rural_other = 10;
 
 Q.unemployed_spd = 25;
-Q.unemployed_kpd = 55;
-Q.unemployed_z = 1;
-Q.unemployed_ddp = 0;
-Q.unemployed_dvp = 0;
+Q.unemployed_lspd = 55;
+Q.unemployed_csrp = 1;
+Q.unemployed_rdp = 0;
+Q.unemployed_cvp = 0;
+Q.unemployed_nlp = 0;
 Q.unemployed_dnvp = 5;
-Q.unemployed_nsdap = 15;
+Q.unemployed_ndpd = 15;
 Q.unemployed_other = 9;
 
 Q.catholics_spd = 15;
-Q.catholics_kpd = 2;
-Q.catholics_z = 50;
-Q.catholics_ddp = 0;
-Q.catholics_dvp = 5;
+Q.catholics_lspd = 3;
+Q.catholics_csrp = 20;
+Q.catholics_rdp = 0;
+Q.catholics_cvp = 40;
+Q.catholics_nlp = 5;
 Q.catholics_dnvp = 5;
-Q.catholics_nsdap = 0;
+Q.catholics_ndpd = 0;
 Q.catholics_other = 12;
 
 
@@ -296,31 +296,66 @@ Q.catholics_other = 12;
 // note: the Z figures also include the BVP (Bavarian people's party)
 // since they were ideologically similar, but they were separate parties.
 // They did not have a CDU/CSU-style relationship.
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-Q.other_r = 9;
+Q.spd_r = 23.5;
+Q.lspd_r = 8.2;
+Q.csrp_r = 7.5;
+Q.rdp_r = 7.3;
+Q.cvp_r = 17.4;
+Q.bvp_r = 3.9;
+Q.nlp_r = 11.8;
+Q.dnvp_r = 10.1;
+Q.ndpd_r = 3;
+Q.other_r = 7.3;
 
 // diff from prev
 Q.old_spd_r = 26;
-Q.old_kpd_r = 9;
-Q.old_z_r = 17;
-Q.old_ddp_r = 6;
-Q.old_dvp_r = 10;
+Q.old_lspd_r = 9;
+Q.old_csrp_r = 17;
+Q.old_rdp_r = 6;
+Q.old_cvp_r = 10;
+Q.old_nlp_r = 0;
 Q.old_dnvp_r = 20;
-Q.old_nsdap_r = 3;
+Q.old_ndpd_r = 3;
 Q.old_other_r = 9;
 
 // sapd isn't formed yet, but it may be formed
 Q.sapd_r = 0;
 Q.old_sapd_r = 0;
 
-// for changing the DDP's name to the DStP
-Q.ddp_name = "DDP";
+Q.adjustmentFactors_spd = 1.0;
+Q.adjustmentFactors_lspd = 1.0;
+Q.adjustmentFactors_csrp = 1.0;
+Q.adjustmentFactors_rdp = 1.0;
+Q.adjustmentFactors_bsw = 1.0;
+Q.adjustmentFactors_cvp = 1.0;
+Q.adjustmentFactors_nlp = 1.0;
+Q.adjustmentFactors_lvp = 1.0;
+Q.adjustmentFactors_dnvp = 1.0;
+Q.adjustmentFactors_ndpd = 1.0;
+Q.adjustmentFactors_other = 0.75;
+
+Q.adjustmentFactors_votes_spd = 1.0;
+Q.adjustmentFactors_votes_lsp = 1.0;
+Q.adjustmentFactors_votes_csrp = 1.0;
+Q.adjustmentFactors_votes_rdp = 1.0;
+Q.adjustmentFactors_votes_cvp = 1.0;
+Q.adjustmentFactors_votes_nlp = 1.0;
+Q.adjustmentFactors_votes_lvp = 1.0;
+Q.adjustmentFactors_votes_dnvp = 1.0;
+Q.adjustmentFactors_votes_ndpd = 1.0;
+Q.adjustmentFactors_votes_other = 1.0;
+
+Q.adjustmentFactors_spd_prussia = 1.0;
+Q.adjustmentFactors_lspd_prussia = 1.0;
+Q.adjustmentFactors_csrp_prussia = 1.0;
+Q.adjustmentFactors_rdp_prussia = 1.0;
+Q.adjustmentFactors_cvp_prussia = 1.0;
+Q.adjustmentFactors_lvp_prussia = 1.0;
+Q.adjustmentFactors_nlp_prussia = 1.0;
+Q.adjustmentFactors_dnvp_prussia = 1.0;
+Q.adjustmentFactors_nsdap_prussia = 1.0;
+Q.adjustmentFactors_other_prussia = 0.7;
+
 
 // array of objects of the form {date: Date(), spd: 10, kpd: 12, ...} for each election
 Q.election_records = [];
@@ -331,27 +366,29 @@ Q.economic_records = [];
 
 
 // State of the government
-Q.president = "Hindenburg";
-// starting chancellor: Wilhelm Marx
-Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
+Q.president = "Ursula";
+// starting chancellor: Angela Merkel
+Q.chancellor = "Merkel";
+Q.chancellor_party = 'CVP';
 Q.spd_in_government = 0;
-Q.z_in_government = 1;
-Q.ddp_in_government = 0;
-Q.dvp_in_government = 1;
+Q.lspd_in_government = 0;
+Q.rdp_in_government = 0;
+Q.csrp_in_government = 0;
+Q.cvp_in_government = 1;
+Q.nlp_in_government = 1;
 Q.dnvp_in_government = 1;
-Q.kpd_in_government = 0;
-Q.nsdap_in_government = 0;
+Q.ndpd_in_government = 0;
 
 Q.in_right_coalition = 0;
-// Weimar coalition = SPD + Z + DDP
-Q.in_weimar_coalition = 0;
-// Grand coalition = SPD + Z + BVP + DDP + DVP
-// also includes the "new grand coalition" of SPD + Z + BVP + DDP + DVP + Others
+// Left Bloc = SPD + LSPD + CSRP + RDP
+Q.in_left_bloc_coalition = 0;
+// Grand coalition = SPD + CSRP + RDP + CVP + BVP
 Q.in_grand_coalition = 0;
-// Popular front = SPD + KPD + Z + DDP
-Q.in_popular_front = 0;
-// left coalition = SPD + KPD + left-splinters
+// April coalition = SPD + LSPD + CSRP + RDP
+Q.in_april_coalition = 0;
+// Socialist coalition = SPD + LPD + CSRP
+Q.in_socialist_coalition = 0;
+// left coalition = SPD + LSPD
 Q.in_left_front = 0;
 // emergency government containing the SPD: only president Braun can do this.
 Q.in_emergency_government = 0;
@@ -361,10 +398,13 @@ Q.grand_coalition_failed = 0;
 Q.in_minority_government = 0;
 // national unity governmet
 
-// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
-Q.coalition_dissent = 0;
-// dissent from the KPD, in a popular front or left front government
-Q.kpd_coalition_dissent = 0;
+// if you're in a left-wing coalition, this is an incremental counter for how many times dissent has happened from the leftist parties.
+Q.coalition_dissent = 0
+Q.lspd_coalition_dissent = 0;
+Q.csrp_coalition_dissent = 0
+Q.rdp_coalition_dissent = 0
+// dissent from the CVP, in a grand coalition
+Q.cvp_coalition_dissent = 0;
 
 // does the SPD tolerate the government even if it is not a participant?
 Q.spd_toleration = 0;
