@@ -48,21 +48,13 @@ Chancellor: [+ chancellor +] ([+ chancellor_party +])
 Reichstag composition:
 
 <span class="tooltip-text" title="Social Democratic Party of Germany" style="color: #c00000;">**SPD**</span>: [+ spd_r +]%
-
 <span class="tooltip-text" title="Christian People's Party" style="color: #000000;">**CVP**</span>: [+ cvp_r +]%
-
 <span class="tooltip-text" title="Left Social Democratic Party" style="color: #BE3075;">**LSPD**</span>: [+ lspd_r +]%
-
 <span class="tooltip-text" title="Christian Social Reform Party" style="color: #FF7F00;">**CSRP**</span>: [+ csrp_r +]%
-
 <span class="tooltip-text" title="Radical Democratic Party" style="color: #E0B0FF;">**RDP**</span>: [+ rdp_r +]%
-
 <span class="tooltip-text" title="National Liberal Party" style="color: #98C22C;">**NLP**</span>: [+ nlp_r +]%
-
 <span class="tooltip-text" title="German National People's Party" style="color: #3E88B3;">**DNVP**</span>: [+ dnvp_r +]%
-
 <span class="tooltip-text" title="National Democratic People's Party" style="color: #D79E2A;">**NDPD**</span>: [+ ndpd_r +]%
-
 **Others**: [+ other_r +]%
 
 [? if spd_in_government = 1 : Budget: [+ budget +] ?]
