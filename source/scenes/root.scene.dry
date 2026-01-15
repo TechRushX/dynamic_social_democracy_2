@@ -57,6 +57,9 @@ Q.reformist_dissent = 5;
 Q.green_strength = 5;
 Q.green_dissent = 10;
 
+// Unity level of the Left Bloc 
+left_unity = 50;
+
 // secret events...
 Q.unions_independent = 0;
 Q.green_resign = 0;
@@ -399,10 +402,10 @@ Q.in_minority_government = 0;
 // national unity governmet
 
 // if you're in a left-wing coalition, this is an incremental counter for how many times dissent has happened from the leftist parties.
-Q.coalition_dissent = 0
+Q.coalition_dissent = 0;
 Q.lspd_coalition_dissent = 0;
-Q.csrp_coalition_dissent = 0
-Q.rdp_coalition_dissent = 0
+Q.csrp_coalition_dissent = 0;
+Q.rdp_coalition_dissent = 0;
 // dissent from the CVP, in a grand coalition
 Q.cvp_coalition_dissent = 0;
 
