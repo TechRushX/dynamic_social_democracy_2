@@ -292,6 +292,17 @@ Q.catholics_dnvp = 5;
 Q.catholics_ndpd = 0;
 Q.catholics_other = 12;
 
+Q.previous_spd_last_election_votes = 26;
+Q.previous_lspd_last_election_votes = 9;
+Q.previous_csrp_last_election_votes = 17.3;
+Q.previous_rdp_last_election_votes = 6.3;
+Q.previous_cvp_last_election_votes = 10.1;
+Q.previous_nlp_last_election_votes = 10.1;
+Q.previous_dnvp_last_election_votes = 20.5;
+Q.previous_ndpd_last_election_votes = 3;
+Q.previous_other_last_election_votes = 7.8;
+Q.previous_bvp_last_election_votes = 3.7;
+
 
 // Current Reichstag composition
 // % of Reichstag in Jan 1928
