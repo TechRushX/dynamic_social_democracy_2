@@ -257,6 +257,7 @@ Q.new_middle_spd = 5;
 Q.new_middle_lspd = 1;
 Q.new_middle_csrp = 10;
 Q.new_middle_rdp = 25;
+Q.new_middle_cvp = 4;
 Q.new_middle_nlp = 25;
 Q.new_middle_dnvp = 10;
 Q.new_middle_ndpd = 5;
