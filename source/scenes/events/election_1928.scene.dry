@@ -1452,7 +1452,7 @@ go-to: ministries
 @drop_health_edu
 title: Drop the Health & Education Ministry.
 view-if: health_edu_minister_party = "SPD"
-on-arrival: health_edu_minister_party = “WIP”; health_edu_minister = "WIP"; leverage += 10;
+on-arrival: health_edu_minister_party = "WIP"; health_edu_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
