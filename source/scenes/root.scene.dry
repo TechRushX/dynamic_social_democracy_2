@@ -399,10 +399,10 @@ Q.in_right_coalition = 0;
 Q.in_left_bloc_coalition = 0;
 // Grand coalition = SPD + CSRP + RDP + CVP + BVP
 Q.in_grand_coalition = 0;
-// April coalition = SPD + LSPD + CSRP + RDP
+// April coalition = SPD + CSRP + RDP
 Q.in_april_coalition = 0;
-// Socialist coalition = SPD + LPD + CSRP
-Q.in_socialist_coalition = 0;
+// Popular Front = SPD + LSPD + CSRP
+Q.in_popular_front = 0;
 // left coalition = SPD + LSPD
 Q.in_left_front = 0;
 // emergency government containing the SPD: only president Braun can do this.
