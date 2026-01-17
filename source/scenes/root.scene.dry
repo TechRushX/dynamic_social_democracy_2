@@ -265,7 +265,7 @@ Q.new_middle_other = 15;
 
 Q.rural_spd = 10;
 Q.rural_lspd = 0;
-Q.rural_cvp = 5;
+Q.rural_csrp = 5;
 Q.rural_rdp = 5;
 Q.rural_cvp = 15;
 Q.rural_nlp = 5;
