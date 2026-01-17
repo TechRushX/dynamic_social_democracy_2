@@ -446,8 +446,8 @@ Q.energy_infra_minister = "WIP"
 Q.energy_infra_minister_party = "WIP"
 Q.environment_minister = "WIP"
 Q.environment_minister_party = "WIP"
-Q.health_education_minister = "WIP"
-Q.health_education_minister_party = "WIP"
+Q.health_edu_minister = "WIP"
+Q.health_edu_minister_party = "WIP"
 
 
 // Events: what has occurred?
