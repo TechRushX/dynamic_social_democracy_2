@@ -99,22 +99,16 @@ if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
 }
 
 // coalitions
-Q.weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r - 3;
+Q.left_bloc = Q.spd_r + Q.lspd.r + Q.csrp.r + Q.rdp_r;
+Q.april_coalition = Q.spd_r + Q.csrp.r + Q.rdp_r
 Q.grand_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r;
-Q.bourgeois_coalition = Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
-Q.center_right_coalition = Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r;
-Q.right_coalition = Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r;
-Q.far_right_coalition = Q.dnvp_r + Q.nsdap_r;
-Q.left_coalition = Q.spd_r + Q.kpd_r + Q.sapd_r;
+Q.people_bloc = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.ndpd_r + Q.other_r;
+Q.center_right_coalition = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.other_r;
+Q.far_right_coalition = Q.nlp_r + Q.dnvp_r + Q.ndpd_r;
+Q.left_front = Q.spd_r + Q.kpd_r + Q.sapd_r;
 // this is an absurd concept lol
-Q.popular_front_coalition = Q.spd_r + Q.kpd_r + Q.z_r + Q.ddp_r - 3 + Q.sapd_r;
+Q.popular_front_coalition = Q.spd_r + Q.lspd_r + Q.csrp_r;
 Q.anti_democratic_coalition = Q.kpd_r + Q.nsdap_r + Q.dnvp_r;
-// aka everyone except nazi, kpd, dnvp
-Q.neo_weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
-// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
-Q.hitler_right_coalition = Q.z_r + Q.dnvp_r + Q.nsdap_r;
-// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
-Q.progressive_coalition = Q.spd_r + Q.kpd_r + Q.ddp_r + Q.sapd_r;
 
 if (Q.kpd_relation >= 30) {
     Q.weimar_coalition += Q.sapd_r;
@@ -185,18 +179,18 @@ on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_r >= 15)
 on-display: {!
 data = [
     {
-        "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
-        "seats": Math.round(Q.kpd_r*5),
+        "id": "lspd",
+        "legend": "LSPD",
+        "name": "LSPD",
+        "seats": Math.round(Q.lspd_r*5),
     }
 ];
-if (Q.sapd_formed && Q.sapd_r) {
+if (Q.bsw_formed && Q.bsw_r) {
     data.push({
-            "id": "sapd",
-            "legend": "SAPD",
-            "name": "SAPD",
-            "seats": Math.round(Q.sapd_r*5),
+            "id": "bsw",
+            "legend": "BSW",
+            "name": "BSW",
+            "seats": Math.round(Q.bsw_r*5),
             });
 }
 data = data.concat([
@@ -207,16 +201,16 @@ data = data.concat([
         "seats": Math.round(Q.spd_r*5),
     },
     {
-        "id": "ddp",
-        "legend": Q.ddp_name,
-        "name": Q.ddp_name,
-        "seats": Math.round(Q.ddp_r*5),
+        "id": "csrp",
+        "legend": "CSRP",
+        "name": "CSRP",
+        "seats": Math.round(Q.csrp_r*5),
     },
     {
-        "id": "z",
-        "legend": "Center",
-        "name": "Center",
-        "seats": Math.round((Q.z_r - 3)*5),
+        "id": "rdp",
+        "legend": "RDP",
+        "name": "RDP",
+        "seats": Math.round(Q.rdp_r*5),
     },
     {
         "id": "bvp",
@@ -225,10 +219,10 @@ data = data.concat([
         "seats": Math.round(3*5),
     },
     {
-        "id": "dvp",
-        "legend": "DVP",
-        "name": "DVP",
-        "seats": Math.round(Q.dvp_r*5),
+        "id": "cvp",
+        "legend": "CVP",
+        "name": "CVP",
+        "seats": Math.round(Q.cvp_r*5),
     },
     {
         "id": "other",
@@ -237,16 +231,22 @@ data = data.concat([
         "seats": Math.round(Q.other_r*5),
     },
     {
+        "id": "nlp",
+        "legend": "NLP",
+        "name": "NLP",
+        "seats": Math.round(Q.nlp_r*5),
+    },
+    {
         "id": "dnvp",
         "legend": "DNVP",
         "name": "DNVP",
         "seats": Math.round(Q.dnvp_r*5),
     },
     {
-        "id": "nsdap",
-        "legend": "NSDAP",
-        "name": "NSDAP",
-        "seats": Math.round(Q.nsdap_r*5),
+        "id": "ndpd",
+        "legend": "NDPD",
+        "name": "NDPD",
+        "seats": Math.round(Q.ndpd_r*5),
     },
 ]);
 
@@ -277,34 +277,40 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_r +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td></tr>!}
 
-[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_r +]% {!</td><td>!} [+ str_change_sapd +] {!</td></tr>!} ?]
+[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} BSW: {!</td><td>!} [+ bsw_r +]% {!</td><td>!} [+ str_change_sapd--- +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_r +]% {!</td><td>!} [+ str_change_kpd +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#BE3075'> </div> !} LSPD: {!</td><td>!} [+ kpd_r +]% {!</td><td>!} [+ str_change_kpd +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_r +]% {!</td><td>!} [+ str_change_ddp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#FF7F00'> </div> !} CSRP: {!</td><td>!} [+ z_minus_bvp_r +]% {!</td><td>!} [+ str_change_z +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_minus_bvp_r +]% {!</td><td>!} [+ str_change_z +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E0B0FF'> </div> !} RDP: {!</td><td>!} [+ rdp_r +]% {!</td><td>!} [+ str_change_ddp +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} BVP: {!</td><td>!} 3% {!</td><td>!} 0 {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#000000'> </div> !} CVP: {!</td><td>!} [+ cvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!}
  
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r +] % {!</td><td>!} [+ str_change_other +] {!</td></tr>!}
 
+{!<tr><td><div class="box" style='background-color:#98C22C'> </div> !} NLP: {!</td><td>!} [+ nlp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}
+
 {!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#D79E2A'> </div> !} NDPD: {!</td><td>!} [+ ndpd_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ weimar_coalition +]%
+Left Bloc (<span style="color: #c00000;">**SPD**</span> + <span style="color: #BE3075;">**LSPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span>): [+ left_bloc +]%
 
-Grand Coalition (SPD + Z + BVP + [+ ddp_name +] + DVP): [+ grand_coalition +]%
+April Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span>): [+ april_coalition +]%
 
-Bourgeois Coalition (Z + BVP + [+ ddp_name +] + DVP + Others): [+ bourgeois_coalition +]%
+Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> + <span style="color: #000000;">**CVP**</span> + BVP): [+ grand_coalition +]%
 
-Right-wing Coalition (Z + BVP + DVP + Others + DNVP): [+ right_coalition +]%
+People's Bloc (<span style="color: #000000;">**CVP**</span> + BVP + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + <span style="color: #D79E2A;">**NDPD**</span> + Others): [+ people_bloc +]%
+
+Center-right coalition (<span style="color: #000000;">**CVP**</span> + BVP + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + Others): [+ center_right_coalition +]%
+
+Far-right coalition (<span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + <span style="color: #D79E2A;">**NDPD**</span>): [+ far_right_coalition +]%
 
 [? if nazi_urgency <= 1 and nsdap_r >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
 
@@ -315,24 +321,77 @@ There are some potential coalition arrangements.
 @coalition_menu
 
 - @spd_majority
-- @weimar_coalition
+- @left_bloc
+- @april_coalition
 - @grand_coalition
-- @new_grand_coalition
-- @unity_government
 - @far_right_coalition
 - @no_majority
 - @brauns_dilemma
-- @left_coalition
 - @popular_front_coalition
-- @right_coalition
 
 # TODO: black-brown coalition
 
 
+@left_bloc
+title: We can form a “<span style="color: #c00000;">**Left Bloc*</span> Coalition.
+view-if: left_bloc >= 50
+subtitle: <span style="color: #c00000;">**SPD**</span> + <span style="color: #BE3075;">**LSPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> ([+ left_bloc +]%)
+on-arrival: in_left_bloc = 1; in_popular_front = 0; in_left_front = 0
+
+As expected, the <span style="color: #c00000;">**Left Bloc*</span> has a majority, and this time, we are expected to take the lead role in the formation of the next government, including selecting the chancellor.
+
+
+
+Who should be the chancellor?
+
+- @scholz
+
+
+
+@april_coalition
+title: We can form an April Coalition.
+subtitle: <span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> ([+ april_coalition +]%)
+view-if: april_coalition >= 50
+on-arrival: leverage += 5; reformist_strength += 5; left_dissent += 5; lspd_left -= 2; lspd_relation -= 5; in_weimar_coalition = 1; spd_in_government = 1; in_popular_front = 0; in_left_front = 0; foreign_minister_party = "Z"; interior_minister_party = "Z"; justice_minister_party = ddp_name; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Wirth"; justice_minister = "Koch-Weser"; labor_minister = "Stegerwald"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Köhler"; agriculture_minister = "Hermes";
+achievement: april_coalition
+
+We have enough votes to form an "April Coalition" government consisting of the <span style="color: #c00000;">**SPD**</span>, <span style="color: #FF7F00;">**CSRP**</span> and <span style="color: #E0B0FF;">**RDP**</span> parties! This hasn’t been possible since the 1980’, and is expected to strengthen the reformist wing in our party. However, the exclusion of the <span style="color: #BE3075;">**LSPD**</span> has shifted them to the right, making future collaboration more tricky.
+
+Who should be the chancellor?
+
+- @scholz
+
+@scholz
+title: Olaf Scholz for Chancellor.
+subtitle: Scholz is popular within the party, and is the preferred candidate of the <span style="color: #E0B0FF;">**RDP**</span> and other parties.
+on-arrival: spd_in_government = 1; chancellor = "Scholz"; chancellor_party = "SPD";
+go-to: ministries
+
+Scholz's appointment as chancellor is approved by all our potential allies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @popular_front_coalition
 title: A new "Popular Front" coalition?
-subtitle: SPD + KPD + Z + [+ ddp_name +]  [? if sapd_formed: + SAPD ?]([+ popular_front_coalition +]%)
-unavailable-subtitle: SPD + KPD + Z + [+ ddp_name +] [? if sapd_formed: + SAPD ?]([+ popular_front_coalition +]%) - [? if ((kpd_relation < 65 and kpd_party_leader == "Thälmann") or (kpd_relation < 45 and kpd_party_leader == "Conciliators")): We do not have good enough relations with the KPD. ?][? if (z_relation < 45 and z_party_leader == "Joos") or (z_relation < 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation < 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators"): We do not have good enough relations with the Center Party. ?][? if communist_coalition < 3 : The Communists are unwilling to compromise at all. ?]
+subtitle: SPD + LSPD + CSRP
+unavailable-subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%) - [? if ((kpd_relation < 65 and kpd_party_leader == "Thälmann") or (kpd_relation < 45 and kpd_party_leader == "Conciliators")): We do not have good enough relations with the KPD. ?][? if (z_relation < 45 and z_party_leader == "Joos") or (z_relation < 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation < 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators"): We do not have good enough relations with the Center Party. ?][? if communist_coalition < 3 : The Communists are unwilling to compromise at all. ?]
 view-if: popular_front_coalition >= 50
 choose-if: (((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_relation >= 45 and kpd_party_leader == "Conciliators")) and ((z_relation >= 45 and z_party_leader == "Joos") or (z_relation >= 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation >= 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators")) and ddp_relation >= 50 and communist_coalition >= 3) or (z_party_leader == "Joos" and kpd_party_leader == "Conciliators" and z_relation >= 30 and kpd_relation >= 30)
 
@@ -1254,7 +1313,7 @@ view-if: labor_minister_party != "SPD"
 on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
 go-to: ministries
 
-Rudolf Wissell of the SPD has been appointed labor minister.
+Rudolf Wissell of the <span style="color: #c00000;">**SPD**</span> has been appointed labor minister.
 
 @interior
 title: Interior Ministry
@@ -1266,11 +1325,11 @@ view-if: interior_minister_party != "SPD"
 on-arrival: leverage -= 5; interior_minister_party = "SPD"; interior_minister = "Severing"
 go-to: ministries
 
-Carl Severing of the SPD has been appointed Interior Minister.
+Carl Severing of the <span style="color: #c00000;">**SPD**</span> has been appointed Interior Minister.
 
 @finance
 title: Finance Ministry
-subtitle: The Finance Ministry controls the government budget and taxes.
+subtitle: The Finance Ministry controls the government budget and taxes The <span style="color: #E0B0FF;">**RDP**</span>’s corporate donors will be in flames if we take this.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
@@ -1278,19 +1337,31 @@ view-if: finance_minister_party != "SPD"
 on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
 go-to: ministries
 
-Rudolf Hilferding of the SPD has been appointed Finance Minister.
+Rudolf Hilferding of the <span style="color: #c00000;">**SPD**</span> has been appointed Finance Minister.
 
-@economic
-title: Economic Ministry
-subtitle: The Economic Ministry controls broader economic policy.
+@environment
+title: Environment Ministry
+subtitle: This is usually the domain of the <span style="color: #E0B0FF;">**RDP**</span>.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
-view-if: economic_minister_party != "SPD"
-on-arrival: leverage -= 10; economic_minister_party = "SPD"; economic_minister = "Schmidt"
+view-if: environment_minister_party != "SPD"
+on-arrival: leverage -= 10; environment_minister_party = "SPD"; environment_minister = "Schmidt"
 go-to: ministries
 
-Robert Schmidt of the SPD has been appointed Economic Minister.
+Robert Schmidt of the <span style="color: #c00000;">**SPD**</span> has been appointed Environment Minister.
+
+@health_edu
+title: Health & Education Ministry
+subtitle: The <span style="color: #FF7F00;">**CSRP**</span> usually manages this, however they wouldn’t make loud objections without it.
+unavailable-subtitle: We do not have enough leverage.
+choose-if: leverage >= 10 
+view-if: health_edu_minister_party != "SPD"
+on-arrival: leverage -= 10; health_edu_minister_party = "SPD"; health_edu_minister = "Baade"
+go-to: ministries
+tags: mins_1928
+
+Fritz Baade of the <span style="color: #c00000;">**SPD**</span> has been appointed Energy & Infrastructure Minister.
 
 @justice
 title: Justice Ministry
@@ -1302,11 +1373,11 @@ view-if: justice_minister_party != "SPD"
 on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
 go-to: ministries
 
-Gustav Radbruch of the SPD has been appointed Justice Minister.
+Gustav Radbruch of the <span style="color: #c00000;">**SPD**</span> has been appointed Justice Minister.
 
 @foreign
 title: Foreign Ministry
-subtitle: This is usually the domain of Gustav Stresemann of the DVP.
+subtitle: The Foreign ministry handles external affairs and relations with other countries.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
@@ -1314,20 +1385,20 @@ view-if: foreign_minister_party != "SPD"
 on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
 go-to: ministries
 
-Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+Rudolf Breitscheid of the <span style="color: #c00000;">**SPD**</span> has been appointed Foreign Minister.
 
 
-@agriculture
-title: Agricultural Ministry
+@energy_infra
+title: Energy & Infrastructure Ministry
 subtitle: This is not our usual domain.
 unavailable-subtitle: We do not have enough leverage.
 choose-if: leverage >= 10 
-view-if: agriculture_minister_party != "SPD"
-on-arrival: leverage -= 10; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
+view-if: energy_infra_minister_party != "SPD"
+on-arrival: leverage -= 10; energy_infra_minister_party = "SPD"; energy_infra_minister = "Baade"
 go-to: ministries
 tags: mins_1928
 
-Fritz Baade of the SPD has been appointed Agriculture Minister.
+Fritz Baade of the <span style="color: #c00000;">**SPD**</span> has been appointed Energy & Infrastructure Minister.
 
 @reichswehr
 title: Reichswehr Ministry
@@ -1339,7 +1410,7 @@ view-if: reichswehr_minister_party != "SPD"
 on-arrival: leverage -= 15; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
 go-to: ministries
 
-Julius Leber of the SPD has been appointed Reichswehr Minister.
+Julius Leber of the <span style="color: #c00000;">**SPD**</span> has been appointed Reichswehr Minister.
 
 
 
@@ -1353,49 +1424,56 @@ This coalition arrangement is tolerable to all.
 @drop_labor
 title: Drop the Labor Ministry.
 view-if: labor_minister_party = "SPD"
-on-arrival: labor_minister_party = "Z"; labor_minister = "Stegerwald"; leverage += 5;
+on-arrival: labor_minister_party = "WIP"; labor_minister = "WIP"; leverage += 5;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_interior
 title: Drop the Interior Ministry.
 view-if: interior_minister_party = "SPD"
-on-arrival: interior_minister_party = "Z"; interior_minister = "Wirth"; leverage += 5;
+on-arrival: interior_minister_party = "WIP"; interior_minister = "WIP"; leverage += 5;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_finance
 title: Drop the Finance Ministry.
 view-if: finance_minister_party = "SPD"
-on-arrival: finance_minister_party = "DVP"; finance_minister = "Moldenhauer"; leverage += 10; finance_minister_party = "Z" if in_weimar_coalition or in_popular_front; finance_minister = "Köhler" if in_weimar_coalition or in_popular_front
+on-arrival: finance_minister_party = "WIP"; finance_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
-@drop_economic
-title: Drop the Economic Ministry.
-view-if: economic_minister_party = "SPD"
-on-arrival: economic_minister_party = "DVP"; economic_minister = "Curtius"; leverage += 10; economic_minister_party = ddp_name if in_weimar_coalition or in_popular_front; economic_minister = "Dietrich" if in_weimar_coalition or in_popular_front;
+@drop_environment
+title: Drop the Environment Ministry.
+view-if: environment_minister_party = "SPD"
+on-arrival: environment_minister_party = "WIP"; economic_minister = "WIP"; leverage += 10;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_health_edu
+title: Drop the Health & Education Ministry.
+view-if: health_edu_minister_party = "SPD"
+on-arrival: health_edu_minister_party = “WIP”; health_edu_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_justice
 title: Drop the Justice Ministry.
 view-if: justice_minister_party = "SPD"
-on-arrival: justice_minister_party = ddp_name; justice_minister = "Koch-Weser"; leverage += 10;
+on-arrival: justice_minister_party = “WIP”; justice_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_foreign
 title: Drop the Foreign Ministry.
 view-if: foreign_minister_party = "SPD"
-on-arrival: foreign_minister_party = "DVP"; foreign_minister = "Stresemann"; foreign_minister = "Curtius" if streseman_dead; leverage += 10; foreign_minister_party = "Z" if in_weimar_coalition or in_popular_front; foreign_minister = "Wirth" if in_weimar_coalition or in_popular_front;
+on-arrival: foreign_minister_party = "WIP"; foreign_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
-@drop_agriculture
-title: Drop the Agriculture Ministry.
-view-if: agriculture_minister_party = "SPD"
-on-arrival: agriculture_minister_party = ddp_name; agriculture_minister = "Dietrich"; leverage += 10; agriculture_minister_party = "Z" if in_weimar_coalition; agriculture_minister = "Hermes" if in_weimar_coalition
+@drop_energy_infra
+title: Drop the Energy & infrastructure Ministry
+view-if: energy_infra_minister_party = "SPD"
+on-arrival: energy_infra_minister_party = “WIP”; energy_infra_minister = “WIP”; leverage += 10; 
 tags: drop_mins_1928
 go-to: ministries
 
