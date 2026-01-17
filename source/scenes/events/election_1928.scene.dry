@@ -1459,7 +1459,7 @@ go-to: ministries
 @drop_justice
 title: Drop the Justice Ministry.
 view-if: justice_minister_party = "SPD"
-on-arrival: justice_minister_party = “WIP”; justice_minister = "WIP"; leverage += 10;
+on-arrival: justice_minister_party = "WIP"; justice_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
@@ -1473,7 +1473,7 @@ go-to: ministries
 @drop_energy_infra
 title: Drop the Energy & infrastructure Ministry
 view-if: energy_infra_minister_party = "SPD"
-on-arrival: energy_infra_minister_party = “WIP”; energy_infra_minister = “WIP”; leverage += 10; 
+on-arrival: energy_infra_minister_party = “WIP”; energy_infra_minister = "WIP"; leverage += 10; 
 tags: drop_mins_1928
 go-to: ministries
 
