@@ -333,12 +333,12 @@ There are some potential coalition arrangements.
 
 
 @left_bloc
-title: We can form a “<span style="color: #c00000;">*Left Bloc*</span> Coalition.
+title: We can form a <span style="color: #c00000;">**Left Bloc**</span> Coalition.
 view-if: left_bloc >= 50
 subtitle: <span style="color: #c00000;">**SPD**</span> + <span style="color: #BE3075;">**LSPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> ([+ left_bloc +]%)
 on-arrival: in_left_bloc = 1; in_popular_front = 0; in_left_front = 0; lspd_in_government = 1; csrp_in_government = 1; rdp_in_government = 1;
 
-As expected, the <span style="color: #c00000;">*Left Bloc*</span> has a majority, and this time, we are expected to take the lead role in the formation of the next government, including selecting the chancellor.
+As expected, the <span style="color: #c00000;">**Left Bloc**</span> has a majority, and this time, we are expected to take the lead role in the formation of the next government, including selecting the chancellor.
 
 Who should be the chancellor?
 
