@@ -270,7 +270,7 @@ Q.rural_rdp = 5;
 Q.rural_cvp = 15;
 Q.rural_nlp = 5;
 Q.rural_dnvp = 40;
-Q.rural_nsdap = 5;
+Q.rural_ndpd = 5;
 Q.rural_other = 10;
 
 Q.unemployed_spd = 25;
