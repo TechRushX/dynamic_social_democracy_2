@@ -252,7 +252,7 @@ Q.workers_ndpd = 0;
 Q.workers_other = 10;
 
 Q.old_middle_spd = 5;
-Q.old_middle_lsdp = 0;
+Q.old_middle_lspd = 0;
 Q.old_middle_csrp = 5;
 Q.old_middle_rdp = 10;
 Q.old_middle_cvp = 15;
