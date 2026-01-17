@@ -99,8 +99,8 @@ if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
 }
 
 // coalitions
-Q.left_bloc = Q.spd_r + Q.lspd.r + Q.csrp.r + Q.rdp_r;
-Q.april_coalition = Q.spd_r + Q.csrp.r + Q.rdp_r
+Q.left_bloc = Q.spd_r + Q.lspd_r + Q.csrp_r + Q.rdp_r;
+Q.april_coalition = Q.spd_r + Q.csrp_r + Q.rdp_r
 Q.grand_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r;
 Q.people_bloc = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.ndpd_r + Q.other_r;
 Q.center_right_coalition = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.other_r;
