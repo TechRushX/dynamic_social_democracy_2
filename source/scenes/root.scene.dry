@@ -440,12 +440,15 @@ Q.labor_minister = 'Brauns';
 Q.labor_minister_party = 'Z';
 Q.reichswehr_minister = 'Groener';
 Q.reichswehr_minister_party = 'I';
-Q.economic_minister = 'Curtius';
-Q.economic_minister_party = 'DVP';
 Q.finance_minister = 'Köhler';
 Q.finance_minister_party = 'Z';
-Q.agriculture_minister = 'Schiele';
-Q.agriculture_minister_party = 'DNVP';
+Q.energy_infra_minister = "WIP"
+Q.energy_infra_minister_party = "WIP"
+Q.envirorment_minister = "WIP"
+Q.envirorment_minister_party = "WIP"
+Q.health_education_minister = "WIP"
+Q.health_education_minister_party = "WIP"
+
 
 // Events: what has occurred?
 Q.panzerkreuzer_seen = 0;
