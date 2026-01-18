@@ -32,7 +32,7 @@ subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; csrp_relation += 5
-go-to: christian_op if cvp_in_government = 1 and spd_in_government = 0 and chancellor != "Merz"; center_coalition if spd_in_government = 1 and cvp_in_government = 1; christian_merz if chancellor = "Merz"
+go-to: christian_op if cvp_in_government = 1 and spd_in_government = 0 and chancellor != "Merz"; christian_coalition if spd_in_government = 1 and cvp_in_government = 1; christian_merz if chancellor = "Merz"
 
 @christian_op
 on-arrival: cvp_relation += 5*(1 - dissent)
