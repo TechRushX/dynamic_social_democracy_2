@@ -122,6 +122,10 @@ Q.lspd_leader = "Thälmann";
 Q.cvp_leader = "Ursula";
 // party leader - can be Ludwig Kaas, Joseph Joos, or Adam Stegerwald after the 1928 December conference. Joos will be most friendly to the SPD.
 Q.ndpd_leader = "Franz";
+Q.rdp_leader = "Annalena"
+Q.csrp_leader = "Annegret"
+Q.nlp_leader = "WIP"
+Q.dnvp_leader = "WIP"
 
 // hmm... maybe we can play nice with Hindenburg???
 Q.hindenburg_relation = 25;
