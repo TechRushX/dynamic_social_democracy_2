@@ -75,6 +75,8 @@ Q.nlp_left = 0
 Q.dnvp_right = 0
 
 
+Q.tv = 0
+
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
 // nazi_urgency indicates how seriously the SPD takes the nazis - scale from 0 to 10.
