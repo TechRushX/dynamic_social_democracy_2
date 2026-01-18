@@ -101,7 +101,7 @@ if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
 // coalitions
 Q.left_bloc = Q.spd_r + Q.lspd_r + Q.csrp_r + Q.rdp_r;
 Q.april_coalition = Q.spd_r + Q.csrp_r + Q.rdp_r
-Q.grand_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r;
+Q.grand_coalition = Q.spd_r + Q.csrp_r + Q.rdp_r + Q.cvp_r;
 Q.people_bloc = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.ndpd_r + Q.other_r;
 Q.center_right_coalition = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.other_r;
 Q.far_right_coalition = Q.nlp_r + Q.dnvp_r + Q.ndpd_r;
@@ -304,11 +304,11 @@ Left Bloc (<span style="color: #c00000;">**SPD**</span> + <span style="color: #B
 
 April Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span>): [+ april_coalition +]%
 
-Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> + <span style="color: #000000;">**CVP**</span> + BVP): [+ grand_coalition +]%
+Grand Coalition (<span style="color: #c00000;">**SPD**</span> + <span style="color: #FF7F00;">**CSRP**</span> + <span style="color: #E0B0FF;">**RDP**</span> + <span style="color: #000000;">**CVP**</span> + <span style="color: #69A2BE;">**BVP**</span>): [+ grand_coalition +]%   
 
-People's Bloc (<span style="color: #000000;">**CVP**</span> + BVP + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + <span style="color: #D79E2A;">**NDPD**</span> + Others): [+ people_bloc +]%
+People's Bloc (<span style="color: #000000;">**CVP**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + <span style="color: #D79E2A;">**NDPD**</span> + Others): [+ people_bloc +]%
 
-Center-right coalition (<span style="color: #000000;">**CVP**</span> + BVP + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + Others): [+ center_right_coalition +]%
+Center-right coalition (<span style="color: #000000;">**CVP**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + Others): [+ center_right_coalition +]%
 
 Far-right coalition (<span style="color: #98C22C;">**NLP**</span> + <span style="color: #3E88B3;">**DNVP**</span> + <span style="color: #D79E2A;">**NDPD**</span>): [+ far_right_coalition +]%
 
