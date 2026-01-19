@@ -318,13 +318,6 @@ Q.previous_ndpd_last_election_votes = 3;
 Q.previous_other_last_election_votes = 7.8;
 Q.previous_bvp_last_election_votes = 3.7;
 
-
-// Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
 Q.spd_r = 23.5;
 Q.lspd_r = 8.2;
 Q.csrp_r = 7.5;
@@ -335,6 +328,28 @@ Q.nlp_r = 11.8;
 Q.dnvp_r = 10.1;
 Q.ndpd_r = 3;
 Q.other_r = 7.3;
+
+Q.spd_seats = 0;
+Q.lspd_seats = 0;
+Q.csrp_seats = 0;
+Q.rdp_seats = 0;
+Q.cvp_seats = 0;
+Q.bvp_seats = 0;
+Q.nlp_seats  = 0;
+Q.dnvp_seats = 0;
+Q.ndpd_seats = 0;
+Q.other_seats = 0;
+
+Q.spd_last_election_seats = 0;
+Q.lspd_last_election_seats = 0;
+Q.csrp_last_election_seats = 0;
+Q.rdp_last_election_seats = 0;
+Q.cvp_last_election_seats = 0;
+Q.bvp_last_election_seats = 0;
+Q.nlp_last_election_seats  = 0;
+Q.dnvp_last_election_seats = 0;
+Q.ndpd_last_election_seats = 0;
+Q.other_last_election_seats = 0;
 
 // diff from prev
 Q.old_spd_r = 26;

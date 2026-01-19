@@ -539,6 +539,8 @@ table {
 /* Styles for parties */
 .seat.lspd {
     fill: #BE3075;
+    stroke: var(--border-color);
+    stroke-width: 1px;
 }
 .seat.spd {
     fill: #E3000F;
@@ -547,12 +549,16 @@ table {
 }
 .seat.csrp {
     fill: #FF7F00;
+    stroke: var(--border-color);
+    stroke-width: 1px;
 }
 .seat.rdp {
-    fill: #DCCA4A;
+    fill: #E0B0FF;
+    stroke: var(--border-color);
+    stroke-width: 1px;
 }
 .seat.bvp {
-    fill: #69A2BE;
+    fill: #A2D8E0;
 }
 .seat.cvp {
     fill: #000000;

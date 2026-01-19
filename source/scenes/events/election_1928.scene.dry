@@ -38,142 +38,269 @@ Let us hope this does not backfire.
 
 @post_election_1928
 on-arrival: {!
-// set old results
-// election threshold constitutional reform
-// banning parties
-var new_party_sum = 0;
-for (var party of Q.parties) {
-    Q['old_' + party + '_r'] = Q[party + '_r'];
-    if (Q.constitutional_reform > 0) {
-        if (Q[party + '_votes'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {
+    Q.parties.push('bvp');
+    Q.bvp_votes = Q.cvp_votes*0.2;
+
+    Q.pre_previous_cvp_last_election_votes = Q.previous_cvp_last_election_votes;
+    Q.cvp_votes_pre = Q.cvp_votes;
+
+    var new_party_sum = 0;
+    var total_reichstag_without = 0;
+    var total_other_party_sum = 0;
+
+    let total_adjusted_votes = 0;
+    for (var party of Q.parties) {
+        let factor = Q['adjustmentFactors_votes_' + party] || 1.0;
+        Q['original_' + party + '_votes'] = Q[party + '_votes'];
+        Q[party + '_votes'] = Q[party + '_votes'] * factor;
+        total_adjusted_votes += Q[party + '_votes'];
+    }
+
+    let normalization_factor = 100 / total_adjusted_votes;
+    for (var party of Q.parties) {
+        Q[party + '_votes'] = Math.round(Q[party + '_votes'] * normalization_factor * 10) / 10;
+    }
+    // Step 1: Calculate adjusted values and the sum for redistribution
+    for (var party of Q.parties) {
+        let factor = Q['adjustmentFactors_' + party] || 1.0; // Default to 1.0 if not set
+
+        Q['old_' + party + '_r'] = Q[party + '_r']; // Store the original r value for comparison
+
+        // Handle constitutional reform logic: set the party's share to 0 based on conditions
+        if ((Q.constitutional_reform > 0 &&
+                (Q[party + '_votes'] < Q.electoral_threshold ||
+                    (Q.electoral_threshold > 1 && party === 'other'))) ||
+            Q[party + '_banned']) {
             Q[party + '_r'] = 0;
         } else {
-            Q[party + '_r'] = Q[party + '_votes'];
+            // Adjust `r` based on the adjustment factor if not affected by constitutional reform
+            Q['original_' + party + '_r'] = Math.round(Q[party + '_votes'] * 10) / 10;
+            Q[party + '_r'] = Math.round(Q[party + '_votes'] * factor * 10) / 10;
         }
-        new_party_sum += Q[party + '_r'];
-    } else {
-        Q[party + '_r'] = Q[party + '_votes'];
-    }
-    // if we use decimals, then we might want to truncate the numbers
-    if (Q.use_decimals) {
-        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);
-    }  else {
-            Q[party + '_r_disp'] = Q[party+'_r'];
-    }
-    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';
-    Q['str_change_' + party] = sign + Q['change_' + party + '_r'];//.toFixed(1);
-}
-// calculate new party sum if electoral reform
-if (Q.electoral_threshold && Q.electoral_threshold > 0) {
-    for (var party of Q.parties) {
+
         if (Q[party + '_r'] > 0) {
-            if (Q.use_decimals) {
-                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;
+            if (factor !== 1.0) { // Only apply to parties with adjustment factors
+                // Calculate the Reichstag without the current party's share
+                Q['reichstag_without_' + party] = 100 - Q['original_' + party + '_r'];
+                total_reichstag_without += Q['reichstag_without_' + party]; // Accumulate the total of 'reichstag_without_' values
+
+                // Calculate the sum of the remaining parties
+                Q[party + '_other_party_sum'] = Q['reichstag_without_' + party] - (Q[party + '_votes'] - Q[party + '_r']);
+                total_other_party_sum += Q[party + '_other_party_sum']; // Accumulate the total of '_other_party_sum' values
             } else {
-                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);
+                // For non-adjusted parties, accumulate their r value for the redistribution
+                new_party_sum += Q[party + '_r'];
             }
         }
-        if (Q.use_decimals) {
-            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);
-        } else {
-            Q[party + '_r_disp'] = Q[party+'_r'];
-        }
-        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
-        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';
-        Q['str_change_' + party] = sign + Q['change_' + party + '_r'];//.toFixed(1);
     }
-}
 
-// get change arrows and signs
+    // Step 2: Redistribute results among non-adjusted parties to ensure the total is 100%
+    if (new_party_sum > 0) {
+        for (var party of Q.parties) {
+            let factor = Q['adjustmentFactors_' + party] || 1.0;
 
+            if (Q[party + '_r'] === 0) continue;
 
-// The largest party can only be the NSDAP or the SPD.
-Q.largest_party = 'SPD';
-if (Q.nsdap_r >= Q.spd_r && Q.nsdap_r >= Q.kpd_r) {
-    Q.largest_party = 'NSDAP';
-}
+            var total_reichstag_without_party = total_reichstag_without - (100 - Q['original_' + party + '_r']);
+            var total_other_party_sum_party = total_other_party_sum - (Q['reichstag_without_' + party] - (Q[party + '_votes'] - Q[party + '_r']));
 
-if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
-    Q.largest_party = 'KPD';
-}
+            console.log(Q.spd_r)
 
-// coalitions
-Q.left_bloc = Q.spd_r + Q.lspd_r + Q.csrp_r + Q.rdp_r;
-Q.april_coalition = Q.spd_r + Q.csrp_r + Q.rdp_r
-Q.grand_coalition = Q.spd_r + Q.csrp_r + Q.rdp_r + Q.cvp_r;
-Q.people_bloc = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.ndpd_r + Q.other_r;
-Q.center_right_coalition = Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.other_r;
-Q.far_right_coalition = Q.nlp_r + Q.dnvp_r + Q.ndpd_r;
-Q.left_front = Q.spd_r + Q.kpd_r + Q.sapd_r;
-// this is an absurd concept lol
-Q.popular_front_coalition = Q.spd_r + Q.lspd_r + Q.csrp_r;
-Q.anti_democratic_coalition = Q.kpd_r + Q.nsdap_r + Q.dnvp_r;
+            if (factor === 1.0) {
+                if (total_other_party_sum > 0) {
+                    Q[party + '_r'] = Math.round((Q[party + '_r'] * total_reichstag_without) / total_other_party_sum * 10) / 10;
+                } else {
+                    Q[party + '_r'] = Q[party + '_r'];
+                }
+            } else if (factor !== 1.0 && total_reichstag_without_party > 0 && total_other_party_sum_party > 0) {
+                let scaling_factor = total_reichstag_without_party / total_other_party_sum_party;
+                Q[party + '_r'] = Math.round(Q[party + '_r'] * scaling_factor * 10) / 10;
+            }
+        }
 
-if (Q.kpd_relation >= 30) {
-    Q.weimar_coalition += Q.sapd_r;
-}
+        // Step 3: Normalize to ensure the total sums to exactly 100%
+        let total_r_sum = 0;
 
-Q.leverage = Q.spd_r;
+        // Calculate the total of all `r` values after redistribution
+        for (var party of Q.parties) {
+            total_r_sum += Q[party + '_r'];
+        }
 
-Q.grand_coalition_failed = 0;
-// Reset government and ministers... Based on Brüning's 1930 govt
-Q.coalition_dissent = 0;
-Q.kpd_coalition_dissent = 0;
-Q.spd_in_government = 0;
-Q.in_weimar_coalition = 0;
-Q.in_grand_coalition = 0;
-Q.in_left_front = 0;
-Q.in_popular_front = 0;
-Q.in_emergency_government = 0;
-Q.in_minority_government = 0;
-Q.in_unity_government = 0;
-Q.spd_toleration = 0;
-Q.spd_caretaker = 0;
-Q.foreign_minister_party = 'DVP';
-Q.interior_minister_party = 'Z';
-Q.justice_minister_party = 'I';
-Q.labor_minister_party = 'Z';
-Q.reichswehr_minister_party = 'I';
-Q.economic_minister_party = Q.ddp_name;
-Q.finance_minister_party = 'DVP';
-Q.agriculture_minister_party = 'Z';
+        // Adjust each party's `r` value proportionally if the total isn't 100
+        if (total_r_sum !== 100) {
+            let normalization_factor = 100 / total_r_sum;
+            for (var party of Q.parties) {
+                if (Q[party + '_r'] > 0) {
+                    Q[party + '_r'] = Math.round(Q[party + '_r'] * normalization_factor * 10) / 10;
+                }
+            }
+        }
+    }
 
-// reset KPD goals
-Q.kpd_goals_seen = 0;
-Q.kpd_ultimatum_seen = 0;
-Q.welfare_goal = 0;
-Q.agriculture_goal = 0;
-Q.economy_goal = 0;
-Q.finance_goal = 0;
-Q.labor_goal = 0;
-Q.foreign_goal = 0;
-Q.interior_goal = 0;
-Q.reichswehr_goal = 0;
+    // Handle demographic changes for all parties
+    for (var party of Q.parties) {
+        for (var c of Q.classes) {
+            Q[c + "_change_" + party + '_display'] = Q[c + '_' + party + '_display'] - Q['old_' + c + '_' + party + '_display'];
+            var sign3 = Q[c + "_change_" + party + '_display'] > 0 ? '+' : '';
+            Q['demo_change_' + c + '_' + party + '_display'] = sign3 + parseFloat(Q[c + "_change_" + party + '_display']).toFixed(0);
+            Q['old_' + c + '_' + party + '_display'] = Q[c + '_' + party + '_display'];
+        }
+    }
+    Q.cvp_r = Q.cvp_r -= Q.bvp_r;
 
-Q.welfare_goal_completed = 0;
-Q.agriculture_goal_completed = 0;
-Q.economy_goal_completed = 0;
-Q.finance_goal_completed = 0;
-Q.labor_goal_completed = 0;
-Q.foreign_goal_completed = 0;
-Q.interior_goal_completed = 0;
-Q.reichswehr_goal_completed = 0;
+    const flooredSeats = {};
+    const remainders = [];
+    let totalFlooredSeats = 0;
 
-Q.strike_term_seen = 0;
+    for (const party of Q.parties) {
+        const exact = (Q[party + '_r'] * 500) / 100;
+        const floored = Math.floor(exact);
+        const remainder = exact - floored;
 
-Q.z_minus_bvp_r = Q.z_r - 3;
+        flooredSeats[party] = floored;
+        totalFlooredSeats += floored;
+        remainders.push({party, remainder});
+    }
 
-// understanding the enemy
-if (Q.nsdap_r >= 15) {
-    Q.understanding_enemy_timer = 2;
-}
+    const seatsToDistribute = 500 - totalFlooredSeats;
 
-var election_result = {'date': new Date(Q.year, Q.month - 1)};
-for (var party of Q.parties) {
-    election_result[party] = Q[party + '_r'];
-}
-Q.election_records.push(election_result);
+    remainders.sort((a, b) => b.remainder - a.remainder);
+
+    for (let i = 0; i < seatsToDistribute; i++) {
+        const index = i % remainders.length;
+        flooredSeats[remainders[index].party]++;
+    }
+
+    for (const party of Q.parties) {
+        Q[party + '_seats'] = flooredSeats[party];
+    }
+
+    // Step 3: Calculate changes in results
+    for (var party of Q.parties) {
+        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];
+        var sign = Q['change_' + party + '_r'] > 0 ?
+            '<img src="img/arrowup.png"> ' :
+            Q['change_' + party + '_r'] < 0 ?
+            '<img src="img/arrowdown.png"> ' :
+            '<img src="img/steady.png"> ';
+        Q['change_' + party + '_r'] = Math.abs(Q['change_' + party + '_r']);
+        Q['str_change_' + party] = sign + parseFloat(Q['change_' + party + '_r']).toFixed(1);
+
+        // Calculate changes in votes
+        Q['change_' + party + '_votes'] = Q[party + '_votes'] - Q['previous_' + party + '_last_election_votes'];
+        if (Q['previous_' + party + '_last_election_votes'] === undefined) {
+            Q['change_' + party + '_votes'] = Q[party + '_votes'];
+        }
+        var sign2 = Q['change_' + party + '_votes'] > 0 ?
+            '<img src="img/arrowup.png"> ' :
+            Q['change_' + party + '_votes'] < 0 ?
+            '<img src="img/arrowdown.png"> ' :
+            '<img src="img/steady.png"> ';
+        Q['str_votes_change_' + party] = sign2 + Math.abs(Q['change_' + party + '_votes']).toFixed(1);
+
+        
+        Q['previous_' + party + '_last_election_seats'] = parseFloat(parseFloat(Q[party + '_last_election_seats']).toFixed(0));
+        Q['change_' + party + '_seats'] = Q[party + '_seats'] - Q['previous_' + party + '_last_election_seats'];
+
+        var sign3 = Q['change_' + party + '_seats'] > 0 ?
+            '<img src="img/arrowup.png"> ' :
+            Q['change_' + party + '_seats'] < 0 ?
+            '<img src="img/arrowdown.png"> ' :
+            '<img src="img/steady.png"> ';
+        Q['str_seats_change_' + party] = sign3 + Math.abs(Q['change_' + party + '_seats']).toFixed(0);
+
+        Q['previous_' + party + '_last_election_votes'] = parseFloat(Q[party + '_votes']).toFixed(1);
+        Q[party + '_last_election_seats'] = parseFloat(Q[party + '_seats']).toFixed(0);
+    }
+
+    Q.parties = Q.parties.filter(party => party !== 'bvp');
+
+    // The largest party can only be the NSDAP or the SPD.
+    Q.largest_party = 'SPD';
+    if (Q.nsdap_r >= Q.spd_r && Q.nsdap_r >= Q.kpd_r) {
+        Q.largest_party = 'NSDAP';
+    }
+
+    if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
+        Q.largest_party = 'KPD';
+    }
+
+    // coalitions
+    Q.left_bloc = +parseFloat(Q.spd_r + Q.lspd_r + Q.csrp_r + Q.rdp_r).toFixed(1);
+    Q.april_coalition = +parseFloat(Q.spd_r + Q.csrp_r + Q.rdp_r).toFixed(1);
+    Q.grand_coalition = +parseFloat(Q.spd_r + Q.csrp_r + Q.rdp_r + Q.cvp_r).toFixed(1);
+    Q.people_bloc = +parseFloat(Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.ndpd_r + Q.other_r).toFixed(1);
+    Q.center_right_coalition = +parseFloat(Q.cvp_r + Q.nlp_r + Q.dnvp_r + Q.other_r).toFixed(1);
+    Q.far_right_coalition = +parseFloat(Q.nlp_r + Q.dnvp_r + Q.ndpd_r).toFixed(1);
+    Q.left_front = +parseFloat(Q.spd_r + Q.kpd_r + Q.sapd_r).toFixed(1);
+    // absurd concept lol
+    Q.popular_front_coalition = +parseFloat(Q.spd_r + Q.lspd_r + Q.csrp_r).toFixed(1);
+    Q.anti_democratic_coalition = +parseFloat(Q.kpd_r + Q.nsdap_r + Q.dnvp_r).toFixed(1);
+
+    if (Q.kpd_relation >= 30) {
+        Q.weimar_coalition += Q.sapd_r;
+    }
+
+    Q.leverage = Q.spd_r;
+
+    Q.grand_coalition_failed = 0;
+    // Reset government and ministers... Based on Brüning's 1930 govt
+    Q.coalition_dissent = 0;
+    Q.kpd_coalition_dissent = 0;
+    Q.spd_in_government = 0;
+    Q.in_weimar_coalition = 0;
+    Q.in_grand_coalition = 0;
+    Q.in_left_front = 0;
+    Q.in_popular_front = 0;
+    Q.in_emergency_government = 0;
+    Q.in_minority_government = 0;
+    Q.in_unity_government = 0;
+    Q.spd_toleration = 0;
+    Q.spd_caretaker = 0;
+    Q.foreign_minister_party = 'DVP';
+    Q.interior_minister_party = 'Z';
+    Q.justice_minister_party = 'I';
+    Q.labor_minister_party = 'Z';
+    Q.reichswehr_minister_party = 'I';
+    Q.economic_minister_party = Q.ddp_name;
+    Q.finance_minister_party = 'DVP';
+    Q.agriculture_minister_party = 'Z';
+
+    // reset KPD goals
+    Q.kpd_goals_seen = 0;
+    Q.kpd_ultimatum_seen = 0;
+    Q.welfare_goal = 0;
+    Q.agriculture_goal = 0;
+    Q.economy_goal = 0;
+    Q.finance_goal = 0;
+    Q.labor_goal = 0;
+    Q.foreign_goal = 0;
+    Q.interior_goal = 0;
+    Q.reichswehr_goal = 0;
+
+    Q.welfare_goal_completed = 0;
+    Q.agriculture_goal_completed = 0;
+    Q.economy_goal_completed = 0;
+    Q.finance_goal_completed = 0;
+    Q.labor_goal_completed = 0;
+    Q.foreign_goal_completed = 0;
+    Q.interior_goal_completed = 0;
+    Q.reichswehr_goal_completed = 0;
+
+    Q.strike_term_seen = 0;
+
+    // understanding the enemy
+    if (Q.nsdap_r >= 15) {
+        Q.understanding_enemy_timer = 2;
+    }
+
+    var election_result = {
+        'date': new Date(Q.year, Q.month - 1)
+    };
+    for (var party of Q.parties) {
+        election_result[party] = Q[party + '_r'];
+    }
+    Q.election_records.push(election_result);
 !}
 on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_r >= 15)
 on-display: {!
@@ -213,16 +340,16 @@ data = data.concat([
         "seats": Math.round(Q.rdp_r*5),
     },
     {
-        "id": "bvp",
-        "legend": "BVP",
-        "name": "BVP",
-        "seats": Math.round(3*5),
-    },
-    {
         "id": "cvp",
         "legend": "CVP",
         "name": "CVP",
         "seats": Math.round(Q.cvp_r*5),
+    },
+    {
+        "id": "bvp",
+        "legend": "BVP",
+        "name": "BVP",
+        "seats": Math.round(Q.bvp_r*5),
     },
     {
         "id": "other",
@@ -273,29 +400,34 @@ go-to: coalition_menu
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
-{!<table>!} 
-{!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_r +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td></tr>!}
+{!<table style="width: 545px; margin-left: -5px;">!} 
+{!<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Reichstag Seats</td><td>Change</td></tr>!}
 
-[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} BSW: {!</td><td>!} [+ bsw_r +]% {!</td><td>!} [+ str_change_sapd--- +] {!</td></tr>!} ?]
+<tr><td colspan="5" style="text-align: center;"><strong>Left Bloc</strong></td></tr>
 
-{!<tr><td><div class="box" style='background-color:#BE3075'> </div> !} LSPD: {!</td><td>!} [+ kpd_r +]% {!</td><td>!} [+ str_change_kpd +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_votes +]%** {!</td><td>!} **[+ str_votes_change_spd +]** {!</td><td>!} **[+ spd_seats +]** (**[+ spd_r +]%**) {!</td><td>!} **[+ str_seats_change_spd +]** (**[+ str_change_spd +]%**) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#FF7F00'> </div> !} CSRP: {!</td><td>!} [+ z_minus_bvp_r +]% {!</td><td>!} [+ str_change_z +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#BE3075'> </div> !} LSPD: {!</td><td>!} [+ lspd_votes +]% {!</td><td>!} [+ str_votes_change_lspd +] {!</td><td>!} [+ lspd_seats +] ([+ lspd_r +]%) {!</td><td>!} [+ str_seats_change_lspd +] ([+ str_change_lspd +]%) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#E0B0FF'> </div> !} RDP: {!</td><td>!} [+ rdp_r +]% {!</td><td>!} [+ str_change_ddp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E0B0FF'> </div> !} RDP: {!</td><td>!} [+ rdp_votes +]% {!</td><td>!} [+ str_votes_change_rdp +] {!</td><td>!} [+ rdp_seats +] ([+ rdp_r +]%) {!</td><td>!} [+ str_seats_change_rdp +] ([+ str_change_rdp +]%) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} BVP: {!</td><td>!} 3% {!</td><td>!} 0 {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#FF7F00'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes +]% {!</td><td>!} [+ str_votes_change_csrp +] {!</td><td>!} [+ csrp_seats +] ([+ csrp_r +]%) {!</td><td>!} [+ str_seats_change_csrp +] ([+ str_change_csrp +]%) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#000000'> </div> !} CVP: {!</td><td>!} [+ cvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!}
- 
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r +] % {!</td><td>!} [+ str_change_other +] {!</td></tr>!}
+<tr><td colspan="5" style="text-align: center;"><strong>People's Bloc</strong></td></tr>
 
-{!<tr><td><div class="box" style='background-color:#98C22C'> </div> !} NLP: {!</td><td>!} [+ nlp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#000000'> </div> !} CVP: {!</td><td>!} [+ cvp_votes +]% {!</td><td>!} [+ str_votes_change_cvp +] {!</td><td>!} [+ cvp_seats +] ([+ cvp_r +]%) {!</td><td>!} [+ str_seats_change_cvp +] ([+ str_change_cvp +]%) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#A2D8E0'> </div> !} BVP: {!</td><td>!} [+ bvp_votes +]% {!</td><td>!} [+ str_votes_change_bvp +] {!</td><td>!} [+ bvp_seats +] ([+ bvp_r +]%) {!</td><td>!} [+ str_seats_change_bvp +] ([+ str_change_bvp +]%) {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D79E2A'> </div> !} NDPD: {!</td><td>!} [+ ndpd_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#98C22C'> </div> !} NLP: {!</td><td>!} [+ nlp_votes +]% {!</td><td>!} [+ str_votes_change_nlp +] {!</td><td>!} [+ nlp_seats +] ([+ nlp_r +]%) {!</td><td>!} [+ str_seats_change_nlp +] ([+ str_change_nlp +]%) {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes +]% {!</td><td>!} [+ str_votes_change_other +] {!</td><td>!} [+ other_seats +] ([+ other_r +]%) {!</td><td>!} [+ str_seats_change_other +] ([+ str_change_other +]%) {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#3F7BC1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ str_votes_change_dnvp +] {!</td><td>!} [+ dnvp_seats +] ([+ dnvp_r +]%) {!</td><td>!} [+ str_seats_change_dnvp +] ([+ str_change_dnvp +]%) {!</td></tr>!}
+
+<tr><td colspan="5" style="text-align: center;"><hr id="read-marker"></td></tr>
+
+{!<tr><td><div class="box" style='background-color:#D79E2A'> </div> !} NDPD: {!</td><td>!} [+ ndpd_votes +]% {!</td><td>!} [+ str_votes_change_ndpd +] {!</td><td>!} [+ ndpd_seats +] ([+ ndpd_r +]%) {!</td><td>!} [+ str_seats_change_ndpd +] ([+ str_change_ndpd +]%) {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
