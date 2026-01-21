@@ -74,7 +74,7 @@ Mass rallies are a common feature of social democratic life, especially in the l
 
 - @class_struggle: The class struggle of the proletariat against the bourgeoisie.
 - @welfare: Sozialpolitik - the maintenance and expansion of social welfare programs.
-- @democracy: Expanding our nascent democracy and defending it against dictatorship and fascism.
+- @europe: Expanding the <span style="color: #001489;">European</span> <span style="color: #FFDD00;">Union</span> and defending it against skeptics and foreign influence.
 - @pacifism: Opposing war, nationalism, and militarism at all costs.
 - @wtb: Support the WTB plan!
 - @local: A mixture of various local and national concerns that resonate most with the audience.
@@ -90,18 +90,18 @@ on-arrival: workers_spd += 3*(1-dissent); workers_spd += 3*(1-dissent) if welfar
 
 The reformist message appeals to the organized workers, whose benefits are the accomplishments of social democracy. [? if welfare > 1 : Our achievements in expanding welfare have made this message more effective. ?]
 
-@democracy
+@europe
 on-arrival: democratization += 1; pro_republic += 2*(1 - dissent); workers_spd += 4*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 4*(1 - dissent) if democratization >= 3; new_middle_spd += 4*(1-dissent) if democratization >= 3 
 
-Our speakers defend the republican system and rail against the monarchists and authoritarians who threaten it.
+Our speakers defend the <span style="color: #001489;">Euro</span><span style="color: #FFDD00;">pean</span> system and rail hard against the <span style="color: #D79E2A;">**nationalists**</span> who threaten it. Despite its flaws, neo-imperalist tendencies and need of reform, it is still undoubtedly one of the biggest achievements of <span style="color: #c00000;">**social democracy**</span>.
 
-[? if democratization < 3 : Talk of democracy does not excite the workers as much as more practical issues. But that may change; part of our job is to provide political education to the proletariat. ?]
-[? if democratization >= 3 : Since we have consistently made democratization a theme of our campaign, the workers are enthusiastic about our message. ?]
+[? if eu_advocacy < 3 : Talks of grander <span style="color: #001489;">E</span><span style="color: #FFDD00;">U</span> reform does not excite the workers as much as more practical issues. But that may change; part of our job is to provide political education to the proletariat. ?]
+[? if democratization >= 3 : Since we have consistently made the <span style="color: #001489;">E</span><span style="color: #FFDD00;">U</span> a theme of our campaign, the workers are enthusiastic about our message. ?]
 
 @pacifism
 on-arrival: pacifism += 1; nationalism -= 2*(1 - dissent); workers_spd += 4*(1 - dissent) if pacifism >= 3; unemployed_spd += 3*(1-dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; new_middle_spd += 4*(1-dissent) if pacifism >= 3
 
-Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in organizing the Great War.
+Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in the African Independence War.
 
 [? if pacifism < 3 : Given the volume of nationalist indoctrination in our society, it is difficult to argue so vehemently against the military. ?]
 [? if pacifism >= 3 : Since we have consistently made pacifism a theme of our campaign, the workers are enthusiastic about our message. ?]
