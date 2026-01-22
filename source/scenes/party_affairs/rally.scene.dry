@@ -91,7 +91,7 @@ on-arrival: workers_spd += 3*(1-dissent); workers_spd += 3*(1-dissent) if welfar
 The reformist message appeals to the organized workers, whose benefits are the accomplishments of social democracy. [? if welfare > 1 : Our achievements in expanding welfare have made this message more effective. ?]
 
 @europe
-on-arrival: democratization += 1; pro_republic += 2*(1 - dissent); workers_spd += 4*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 4*(1 - dissent) if democratization >= 3; new_middle_spd += 4*(1-dissent) if democratization >= 3 
+on-arrival: eu_advocacy += 1; pro_eu += 2*(1 - dissent); workers_spd += 4*(1-dissent) if eu_advocacy >= 3; unemployed_spd += 3*(1-dissent) if eu_advocacy >= 3; pro_eu += 4*(1 - dissent) if eu_advocacy >= 3; new_middle_spd += 4*(1-dissent) if eu_advocacy >= 3 
 
 Our speakers defend the <span style="color: #001489;">Euro</span><span style="color: #FFDD00;">pean</span> system and rail hard against the <span style="color: #D79E2A;">**nationalists**</span> who threaten it. Despite its flaws, neo-imperalist tendencies and need of reform, it is still undoubtedly one of the biggest achievements of <span style="color: #c00000;">**social democracy**</span>.
 
