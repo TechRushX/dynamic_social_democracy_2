@@ -59,6 +59,10 @@ for (var party of Q.parties) {
 }
 
 
+Q.left_force = Q.left_youth*Q.left_mobilization;
+Q.right_force = Q.right_youth*Q.right_mobilization;
+
+
 // set faction strength/dissent to 0
 for (var c of Q.factions) {
     if (Q[c+'_dissent'] < 0) {
