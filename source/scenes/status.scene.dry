@@ -101,37 +101,33 @@ Economic growth: [+ economic_growth_2 +]%
 
 @paramilitaries
 on-arrival: {!
-if (Q.rb_strength) {
-    Q.rb_strength_2 = Q.rb_strength.toFixed(1);
+if (Q.left_youth) {
+    Q.left_youth_2 = Q.left_youth.toFixed(1);
 }
-if (Q.rfb_strength) {
-    Q.rfb_strength_2 = Q.rfb_strength.toFixed(1);
-}
-if (Q.sh_strength) {
-    Q.sh_strength_2 = Q.sh_strength.toFixed(1);
-}
-if (Q.sa_strength) {
-    Q.sa_strength_2 = Q.sa_strength.toFixed(1);
+if (Q.right_youth) {
+    Q.right_youth_2 = Q.right_youth.toFixed(1);
 }
 !}
 
 = Paramilitaries
 
-{!<span class="tooltip-text" title="The Reichsbanner Schwarz-Rot-Gold is a popular organization for defending democracy, mostly affiliated with the SPD.">Reichsbanner</span>!} Strength: [+ rb_strength_2 +] thousand
+<span class="tooltip-text" title="The "Young Socialists" are a popular organization for defending democracy and socialism, mostly affiliated with the SPD." style="color: #c00000;">**Jusos**</span> Strength: [+ left_youth_2 +] thousand
 
-Reichsbanner Militarization: [+ rb_militancy : militancy +]
+<span style="color: #c00000;">**Left**</span>n: [+ left_mobilization : militancy +]
 
-{!<span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD.">RFB</span>!} Strength: [+ rfb_strength_2 +] thousand
+<span class="tooltip-text" title="The "Young Nationalists" are the right wing youth organization." style="color: #D79E2A;">**Junge Nationalisten**</span> Strength: [+ right_youth_2 +] thousand
 
-RFB Militarization: [+ rfb_militancy : militancy +]
+<span style="color: #D79E2A;">**Right**</span> Mobilization: [+ rihgt_mobilization : militancy +]
 
-{!<span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP.">Stahlhelm</span>!} Strength: [+ sh_strength_2 +] thousand
 
-Stahlhelm Militarization: [+ sh_militancy : militancy +]
+<h1>Social Media Presence</h1>
 
-{!<span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary.">SA</span>!} Strength: [+ sa_strength_2 +] thousand
+<span style="color: #c00000;">**Leftist**</span>: [+ left_force +]%
 
-SA Militarization: [+ sa_militancy : militancy +]
+<span style="color: #D79E2A;">**Right**</span>: [+ right_force +]%
+
+Currently, Social Media is dominated by [? if left_force > right_force: style="color: #c00000;">left</span>?][? if right_force > left_force: style="color: #D79E2A;">right</span>?]-wing content.
+
 
 = Official military/paramilitaries
 
