@@ -126,7 +126,7 @@ if (Q.right_youth) {
 
 <span style="color: #D79E2A;">**Right**</span>: [+ right_force +]%
 
-Currently, Social Media is dominated by [? if left_force > right_force: style="color: #c00000;">left</span>?][? if right_force > left_force: style="color: #D79E2A;">right</span>?]-wing content.
+Currently, Social Media is dominated by [? if left_force > right_force: style="color: #c00000;">left</span> ?][? if right_force > left_force: style="color: #D79E2A;">right</span> ?]-wing content.
 
 
 = Official military/paramilitaries
