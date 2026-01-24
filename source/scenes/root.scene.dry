@@ -72,7 +72,7 @@ Q.csrp_left = 0
 Q.rdp_left = 0
 Q.cvp_left = 0
 Q.nlp_left = 0
-Q.dnvp_right = 0
+Q.dnvp_left = 0
 
 
 Q.tv = 0
