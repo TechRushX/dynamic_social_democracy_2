@@ -113,11 +113,11 @@ if (Q.right_youth) {
 
 <span class="tooltip-text" title="The "Young Socialists" are a popular organization for defending democracy and socialism, mostly affiliated with the SPD." style="color: #c00000;">**Jusos**</span> Strength: [+ left_youth_2 +] thousand
 
-<span style="color: #c00000;">**Left**</span>n: [+ left_mobilization : militancy +]
+<span style="color: #c00000;">**Left**</span> Mobilization: [+ left_mobilization : militancy +]
 
 <span class="tooltip-text" title="The "Young Nationalists" are the right wing youth organization." style="color: #D79E2A;">**Junge Nationalisten**</span> Strength: [+ right_youth_2 +] thousand
 
-<span style="color: #D79E2A;">**Right**</span> Mobilization: [+ rihgt_mobilization : militancy +]
+<span style="color: #D79E2A;">**Right**</span> Mobilization: [+ right_mobilization : militancy +]
 
 
 <h1>Social Media Presence</h1>
@@ -126,7 +126,7 @@ if (Q.right_youth) {
 
 <span style="color: #D79E2A;">**Right**</span>: [+ right_force +]%
 
-Currently, Social Media is dominated by [? if left_force > right_force: <span style="color: #c00000;">left</span> ?][? if right_force > left_force: <span style="color: #D79E2A;">right</span> ?]-wing content.
+Currently, Social Media [? if left_force > right_force: is dominated by <span style="color: #c00000;">left</span>?-wing][? if right_force > left_force: is dominated by <span style="color: #D79E2A;">right</span>-wing?][? if right_force == left_force: does not have a noticeable bias in its ?] content.
 
 
 = Official military/paramilitaries
