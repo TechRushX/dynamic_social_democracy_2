@@ -48,7 +48,7 @@ title: Why not fund a TV station?
 subtitle: -2 resources
 choose-if: resources >= 2
 unavailable-subtitle: Not enough resources.
-view-if: radio = 0
+view-if: tv = 0
 on-arrival: tv += 1; resources -= 2; left_mobilization += 0.01; new_middle_spd += 4*(1 - dissent); old_middle_spd += 3*(1 - dissent); workers_spd += 2*(1 - dissent); labor_dissent += 5; socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent) if pacifism > 1; pro_eu += 3*(1-dissent) 
 
 Our new TV station allows us to connect to people in a more intimate setting than before, spreading the message of socialism along with music and other popular content. Since most proletarians cannot afford family TVs right now, we are reaching the middle class, a fact of which our labor comrades are painfully aware.
