@@ -126,7 +126,7 @@ if (Q.right_youth) {
 
 <span style="color: #D79E2A;">**Right**</span>: [+ right_force +]%
 
-Currently, Social Media [? if left_force > right_force: is dominated by <span style="color: #c00000;">left</span>?-wing][? if right_force > left_force: is dominated by <span style="color: #D79E2A;">right</span>-wing?][? if right_force == left_force: does not have a noticeable bias in its ?] content.
+Currently, Social Media [? if left_force > right_force: is dominated by <span style="color: #c00000;">left</span> wing ?][? if right_force > left_force: is dominated by <span style="color: #D79E2A;">right</span>-wing?][? if right_force == left_force: does not have a noticeable bias in its ?] content.
 
 
 = Official military/paramilitaries
