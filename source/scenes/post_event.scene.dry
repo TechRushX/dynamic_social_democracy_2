@@ -59,8 +59,15 @@ for (var party of Q.parties) {
 }
 
 
-Q.left_force = Q.left_youth*Q.left_mobilization;
-Q.right_force = Q.right_youth*Q.right_mobilization;
+
+
+Q.left_force = Q.left_youth/Q.left_mobilization;
+Q.right_force = Q.right_youth/Q.right_mobilization;
+
+var total_force = (Q.left_force+Q.right_force);
+
+Q.left_force = Math.round((Q.left_youth/Q.left_mobilization)100);
+Q.right_force = Math.round((Q.right_youth/Q.right_mobilization)100);
 
 
 // set faction strength/dissent to 0
