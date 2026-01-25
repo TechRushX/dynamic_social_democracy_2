@@ -147,6 +147,7 @@ on-arrival: {!
         }
     }
     Q.cvp_r = Q.cvp_r -= Q.bvp_r;
+    Q.cvp_r = +parseFloatcvp_r.toFixed(1)
 
     const flooredSeats = {};
     const remainders = [];
