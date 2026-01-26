@@ -1,0 +1,49 @@
+title: Young Socialists
+new-page: true
+is-card: true
+tags: party_affairs
+view-if: reichsbanner_timer <= 0
+card-image: img/reichsbanner.jpg
+on-arrival: month_actions += 1; reichsbanner_timer += 6; jusos_funding_cost = 2 if left_mobilizaion > 0.1 else jusos_funding_cost = 1; jusos_funding_cost = 3 if left_mobilization > 0.25
+max-visits: 6
+#subtitle: Paramilitary organizing in defense of the republic.
+
+= Reichsbanner
+
+Jusos is a youth organization for the defense of the Republic against the extremists who threaten it. Some would call it a threat to stability, although currently it is hardly any sort of violent protesting organization the right is fear mongering about. It is officially associated with the <span style="color: #c00000;">left</span> leaning parties - the <span style="color: #c00000;">**SPD**</span>, <span style="color: #BE3075;">**LSPD**</span>, and <span style="color: #FF7F00;">**CSRP**</span>, but by far the largest component is with the <span style="color: #c00000;">**SPD**</span>.
+
+[? if workers_spd < 46 or workers_spd < workers_nsdap or workers_spd < workers_kpd : The Reichsbanner is having a more difficult time recruiting, as the SPD is no longer the dominant party among the workers. Many of its members have left. ?]
+
+- @militant: Fund more military-style training and equipment for the Reichsbanner.
+- @same: Keep the Reichsbanner as it is.
+- @cut_js: Cut funding for the Reichsbanner.
+- @easy_discard
+- @cancel_advisor_action
+
+#- Orient reichsbanner towards anti-fascism (only available if we have prioritized anti fascism)
+
+@militant
+choose-if: resources >= rb_militarization_cost
+unavailable-subtitle: Not enough resources ([+ jusos_funding_cost +] needed).
+subtitle: -[+ rb_militarization_cost +] resources
+on-arrival: resources -= jusos_funding_cost; left_youth += 30; left_mobilization += 0.05; left_strength += 2; left_dissent -= 2; reformist_dissent += 5; workers_spd += 2*(1-dissent); unemployed_spd += 2*(1-dissent); csrp_relation -= 4; csrp_left -= 0.5
+
+Some in our party decry the increasing politicization of Jusos. They say it is emulating the right-wing nationalist tactics, and risks alienating our allies in the <span style="color: #FF7F00;">christian</span> parties. On the other hand, more left-leaning radicals are being lured to our organizations, away from the <span style="color: #BE3075;">**socialists**</span>.
+
+The <span style="color: #FF7F00;">Social Christian</span> Party decries the increased activtiy of Jusos, and its members are leaving the republican organization.
+
+@same
+
+Jusos is already serving the purpose it needs to serve. There is no reason to change what already works.
+
+- @return: Continue...
+
+
+@cut_js
+subtitle: +1 resources
+on-arrival: resources += 1; left_youth -= 30; left_mobilization -= 0.05; left_strength -= 2; left_dissent -= 2; spd_militancy -= 0.05; workers_lspd += 2; unemployed_lspd += 2
+
+Cutting resources from Jusos causes a drop in the membership, and leads some would-be members to join the <span style="color: #BE3075;">Socialists</span> instead.
+
+
+
