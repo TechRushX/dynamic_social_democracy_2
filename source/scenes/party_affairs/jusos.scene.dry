@@ -23,7 +23,7 @@ Jusos is a youth organization for the defense of the Republic against the extrem
 #- Orient reichsbanner towards anti-fascism (only available if we have prioritized anti fascism)
 
 @militant
-choose-if: resources >= rb_militarization_cost
+choose-if: resources >= jusos_funding_cost
 unavailable-subtitle: Not enough resources ([+ jusos_funding_cost +] needed).
 subtitle: -[+ rb_militarization_cost +] resources
 on-arrival: resources -= jusos_funding_cost; left_youth += 30; left_mobilization += 0.05; left_strength += 2; left_dissent -= 2; reformist_dissent += 5; workers_spd += 2*(1-dissent); unemployed_spd += 2*(1-dissent); csrp_relation -= 4; csrp_left -= 0.5
