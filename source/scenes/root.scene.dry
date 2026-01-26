@@ -153,6 +153,8 @@ Q.right_mobilization = 0.5;
 Q.right_youth_banned = 0;
 Q.right_youth_banned_prussia = 0;
 
+Q.jusos_funding_cost = 0;
+
 Q.interior_police_strength = 50;
 Q.interior_police_militancy = 1;
 Q.interior_police_loyalty = 0.45;
