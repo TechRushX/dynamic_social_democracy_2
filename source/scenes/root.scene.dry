@@ -78,6 +78,14 @@ Q.dnvp_left = 0
 Q.tv = 0
 Q.eu_advocacy = 0
 
+
+Q.spd_government_burden_seen = 0;
+Q.spd_government_burden_trigger = 0;
+Q.gov_burden_fail = 0;
+
+
+
+
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
 // nazi_urgency indicates how seriously the SPD takes the nazis - scale from 0 to 10.
@@ -549,7 +557,7 @@ Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'shuffle_leadership', 'streetfighting', 'peoples_party',
             'party_disunity',
             // govt
-            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
+            'agricultural_policy', 'domestic_enemies', 'fiscal_policy', 'spd_government_burden',
             'foreign_policy', 'judiciary', 'labor_affairs', 'military_policy',
             'police', 'prussian_affairs', 'shuffle_cabinet', 'social_welfare',
             'homosexual_rights', 'economic_policy', 'coalition_affairs',
@@ -590,6 +598,7 @@ Q.next_election_year = 1928;
 Q.next_election_month = 5;
 Q.next_election_time = 5;
 // government affairs timers
+Q.spd_government_burden_timer = 0;
 Q.agricultural_policy_timer = 0;
 Q.domestic_enemies_timer = 0;
 Q.economic_policy_timer = 0;
