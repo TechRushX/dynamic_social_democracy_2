@@ -3,7 +3,8 @@ new-page: true
 is-card: true
 tags: govt_affairs
 on-arrival: month_actions += 1; coalition_affairs_timer = 5
-view-if: spd_in_government and coalition_affairs_timer = 0 and not spd_majority and (csrp_dissent >= 1 or lspd_dissent >= 1 or rdp_dissent >= 1 or cvp_dissent >= 1)card-image: img/muller_cabinet.jpg
+view-if: spd_in_government and coalition_affairs_timer = 0 and not spd_majority and (csrp_dissent >= 1 or lspd_dissent >= 1 or rdp_dissent >= 1 or cvp_dissent >= 1)
+card-image: img/muller_cabinet.jpg
 #subtitle: There is dissent within our coalition.
 
 = Coalition Affairs
