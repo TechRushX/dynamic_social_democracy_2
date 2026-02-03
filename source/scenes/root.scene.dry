@@ -81,7 +81,28 @@ Q.eu_advocacy = 0
 
 Q.spd_government_burden_seen = 0;
 Q.spd_government_burden_trigger = 0;
-Q.gov_burden_fail = 0;
+Q.welfare_goal_spd = 0;
+Q.economy_goal_spd = 0;
+Q.finance_goal_spd = 0;
+Q.labor_goal_spd = 0;
+Q.unemployment_goal_spd = 0;
+Q.women_goal_spd = 0;
+Q.education_goal_spd = 0;
+Q.economic_plan_goal_spd = 0;
+Q.agriculture_goal_spd = 0;
+Q.reichswehr_goal_spd = 0;
+Q.goal_spd_cancel = 0;
+Q.goal_spd_total = 0;
+
+Q.economy_goal_spd_peoples = 0;
+Q.finance_goal_spd_peoples = 0;
+Q.tariff_goal_spd_peoples = 0;
+Q.education_goal_spd_peoples = 0;
+Q.labor_goal_spd_peoples = 0;
+Q.agriculture_goal_spd_peoples = 0;
+Q.foreign_goal_spd_peoples = 0;
+Q.goal_spd_cancel_peoples = 0;
+Q.goal_spd_total_peoples = 0;
 
 
 
