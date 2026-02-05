@@ -11,8 +11,8 @@ card-image: img/portraits/JuchaczMarie.jpg
 The social welfare program, including unemployment insurance, healthcare, and old-age care, is the proudest achievement of the <span style="color: #c00000;">**SPD**</span> in our time in government. There is continuous pressure to sevrely reduce the scope of the welfare system[? if black_thursday_seen = 1 :, especially given the economic crisis ?].
 
 - @reduce_spending: Reduce spending on welfare.
-- @increase_pensions: Increase old age pensions.
-- @increase_spending_post_depression: Increase government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
+- @pensions: Increase old age pensions.
+- @catholic_welfare: Increase government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
 - @unemployment_insurance: Largen the unemployment insurance program.
 - @spending_same_pre_depression: Keep spending the same.
 - @spending_same_post_depression: Keep spending the same (effectively a service cut).
