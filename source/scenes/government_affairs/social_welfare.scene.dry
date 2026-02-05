@@ -63,13 +63,13 @@ Our unemployment insurance program has faced a lot of attacks and cuts from the 
 Increasing its scope leaves us better prepared in case of economic downturn, along with boosting support with the jobless and ease of anxiety amongst the working class, who now feel less insecure about losing their posts. [? if catholic_welfare > 2: Christian Lindner and the <span style="color: #E0B0FF;">**RDP**</span> are complaining that we are unjustifiably funding the program, considering the sums given out are considered "liveable and temporary". ?]
 
 @spending_same_pre_depression
-view-if: unemployed <= 8
+view-if: unemployed <= 10
 
 We have kept welfare spending the same.
 
 
 @spending_same_post_depression
-view-if: unemployed > 8
+view-if: unemployed > 10
 on-arrival: lspd_left -= 0.5; workers_spd -= 3; unemployed_spd -= 4; unemployment_insurance -= 1; reformist_dissent += 5; left_dissent += 5; labor_dissent += 5; green_dissent += 5; lspd_dissent += 1; lspd_relation -= 4 if lspd_in_government; lspd_relation -= 4
 subtitle: The increased levels of unemployment necessitate more spending on aid.
 
