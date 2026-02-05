@@ -12,8 +12,8 @@ The social welfare program, including unemployment insurance, healthcare, and ol
 
 - @reduce_spending: Reduce spending on welfare.
 - @pensions: Increase old age pensions.
-- @catholic_welfare: Increase government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
-- @unemployment_insurance: Largen the unemployment insurance program.
+- @catholic_welfare: Boost government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
+- @unemployment_insurance_pre_depression: Enlargen the unemployment insurance program.
 - @spending_same_pre_depression: Keep spending the same.
 - @spending_same_post_depression: Keep spending the same (effectively a service cut).
 - @easy_discard
