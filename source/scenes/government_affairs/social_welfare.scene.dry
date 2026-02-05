@@ -8,11 +8,12 @@ card-image: img/portraits/JuchaczMarie.jpg
 
 = Social Welfare Policy
 
-The social welfare program, including unemployment insurance, healthcare, and old-age care, is the proudest achievement of the SPD in our time in government. There is continuous pressure to dismantle the welfare system[? if black_thursday_seen = 1 :, especially given the economic crisis ?].
+The social welfare program, including unemployment insurance, healthcare, and old-age care, is the proudest achievement of the <span style="color: #c00000;">**SPD**</span> in our time in government. There is continuous pressure to sevrely reduce the scope of the welfare system[? if black_thursday_seen = 1 :, especially given the economic crisis ?].
 
 - @reduce_spending: Reduce spending on welfare.
-- @increase_spending_pre_depression: Increase spending on welfare.
-- @increase_spending_post_depression: Increase spending (welfare levels will remain about the same).
+- @increase_pensions: Increase old age pensions.
+- @increase_spending_post_depression: Increase government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
+- @unemployment_insurance: Largen the unemployment insurance program.
 - @spending_same_pre_depression: Keep spending the same.
 - @spending_same_post_depression: Keep spending the same (effectively a service cut).
 - @easy_discard
@@ -22,38 +23,57 @@ The social welfare program, including unemployment insurance, healthcare, and ol
 subtitle: This will hurt our proletarian base. +1 Budget
 unavailable-subtitle: There is nothing left to cut.
 choose-if: welfare >= -5
-on-arrival: budget += 1; workers_spd -= 6; unemployed_spd -= 6; workers_kpd += 3; welfare -= 1; reformist_dissent += 10; left_dissent += 10; labor_dissent += 10; center_dissent += 5; neorevisionist_dissent += 5; dvp_relation += 5; z_relation += 3; pro_republic -= 3; coalition_dissent -= 1 if in_grand_coalition and coalition_dissent > 0; kpd_coalition_dissent += 1; kpd_relation -= 8; inflation -= 0.3; unemployed += 0.4; economic_growth -= 0.2;
+on-arrival: budget += 1; lspd_left -= 0.5; rdp_left += 0.5; workers_spd -= 6; unemployed_spd -= 6; workers_ndpd += 3; welfare -= 1; reformist_dissent += 10; left_dissent += 10; labor_dissent += 10; green_dissent += 5; rdp_relation += 5; cvp_relation += 3; pro_eu -= 3; rdp_dissent -= 1 if spd_in_government and rdp_in_government and rdp_dissent > 0; lspd_coalition_dissent += 1; lspd_relation -= 8; inflation -= 0.3; unemployed += 0.4; economic_growth -= 0.2;
 
 We have reduced levels of social welfare spending. This means more poverty and suffering for the working class. Our detractors claim that we are sacrificing proletarian livelihoods for the sake of class peace with the bourgeoisie. Are they wrong? Are the workers wrong to turn to the Communists, in light of our choices?
 
 
-@increase_spending_pre_depression
-view-if: unemployed <= 15
+@pensions
+view-if: pensions < 5
 choose-if: budget > 0
-subtitle: -1 Budget
-on-arrival: budget -= 1; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); welfare += 1; reformist_dissent -= 5; labor_dissent -= 5; center_dissent -= 5; left_dissent -= 5; neorevisionist_dissent -= 5; coalition_dissent += 1 if welfare > 1; welfare_goal_completed += 1; inflation += 0.3; unemployed -= 0.4; economic_growth += 0.2; welfare_goal_spd += 1;
+subtitle: This will help us expand easier beyond our usual demographics. -1 Budget
+on-arrival: budget -= 1; pensions += 1; cvp_left += 0.5; dnvp_left += 0.5; workers_spd += 4*(1-dissent); rural_spd += 5*(1-dissent); unemployed_spd += 3*(1-dissent); welfare += 1; reformist_dissent -= 5; rdp_dissent += 0.5 if pensions > 1; labor_dissent -= 5; green_dissent -= 5; left_dissent -= 5; welfare_goal_completed += 1; inflation += 0.1; unemployed -= 0.1; economic_growth += 0.1; welfare_goal_spd += 1;
 
-We have increased welfare spending. Our proletarian base is pleased.
+We have increased pensions. Our usual base is pleased, along with the older rural folk, which we are stealing from <span style="color: #3E88B3;">**DNVP**</span> and <span style="color: #000000;">**CVP**</span>. This in turn has strengthen the agrarians inside the former, and the social christians inside the latter, in an effort to resist the voting demographic shift. 
 
-@increase_spending_post_depression
-view-if: unemployed > 15
+[? if pensions > 1: However, the liberals inside the <span style="color: #E0B0FF;">**RDP**</span> have raised concerns of overspending on welfare and not more concrete economic projects, and have threatend a vote of no confidence are we to continue doing so. ?]
+
+[? if pensions >= 5: German pensions are now officially the most generous in the entire continet! Our party no longer sees any merit in any further budget expenses here. ?]
+
+
+@catholic_welfare
+view-if: catholic_welfare < 6
 choose-if: budget > 0
-on-arrival: budget -= 1; workers_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent); coalition_dissent += 1 if welfare > 0; welfare_goal_completed += 1; inflation += 0.3
-subtitle: The increased levels of unemployment necessitate more spending on aid to maintain the same benefits. -1 Budget
+on-arrival: budget -= 1; catholic_welfare += 1; workers_spd += 3*(1-dissent); unemployed_spd += 2*(1-dissent); catholics_spd += 2*(1-dissent); csrp_dissent -= 1 if csrp_dissent > 0; rdp_dissent += 0.5 if catholic_welfare > 2; welfare_goal_completed += 1; inflation += 0.3
+subtitle: The <span style="color: #FF7F00;">**CSRP**</span> will be most delighted. -1 Budget
 
-Increasing welfare spending is necessary in light of the rise in unemployment, so we are essentially treading water.
+*Caritas Deutschland* has been a cornerstone of german welfare. This is primarly due to it historically being the least controversial option for the <span style="color: #000000;">**CVP**</span> to increase social security as part of a <span style="color: #000000;">**People's Bloc**</span> coalition. As for the <span style="color: #c00000;">**Left Bloc**</span>, the <span style="color: #FF7F00;">**CSRP**</span> is content to be in a coalition with us despite our avid promotion of secularism, along with <span style="color: red;">Ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> and women's rights, as long as catholic welfare is respected.
+
+[? if catholic_welfare > 2: Still, the <span style="color: #E0B0FF;">**RDP**</span> is now nagging us about the importance of Schwarze Null and how we must trading long term fiscal responsibility for short term polling gains. ?]
+
+[? if catholic_welfare == 6: Caritas is considered sufficiently funded, and does not warrant future government budget expenditure. ?]
+
+@unemployment_insurance_pre_depression
+view-if: unemployment_insurance < 6
+choose-if: budget > 0
+on-arrival: budget -= 1; unemployment_insurance += 1; workers_spd += 2*(1-dissent); unemployed_spd += 4*(1-dissent); rdp_dissent += 1 if unemployment_insurance > 1; welfare_goal_completed += 1; inflation += 0.3; unemployed -= 0.2; economic_growth += 0.2;
+subtitle: The <span style="color: #FF7F00;">**CSRP**</span> will be most delighted. -1 Budget
+
+Our unemployment insurance program has faced a lot of attacks and cuts from the right. They are insisting we are promoting laziness and "ruining" the idealized version of a hardworking german. Nontheless, it stands as one of our proudest and most popular achievements, and a beacon of the <span style="color: #c00000;">social democratic</span> way of life.
+
+Increasing its scope leaves us better prepared in case of economic downturn, along with boosting support with the jobless and ease of anxiety amongst the working class, who now feel less insecure about losing their posts. [? if catholic_welfare > 2: Christian Lindner and the <span style="color: #E0B0FF;">**RDP**</span> are complaining that we are unjustifiably funding the program, considering the sums given out are considered "liveable and temporary". ?]
 
 @spending_same_pre_depression
-view-if: unemployed <= 15
+view-if: unemployed <= 8
 
 We have kept welfare spending the same.
 
 
 @spending_same_post_depression
-view-if: unemployed > 15
-on-arrival: workers_spd -= 3; unemployed_spd -= 4; welfare -= 1; reformist_dissent += 5; left_dissent += 5; labor_dissent += 5; center_dissent += 5; neorevisionist_dissent += 5; kpd_coalition_dissent += 1; kpd_relation -= 8 if in_popular_front or in_left_front
+view-if: unemployed > 8
+on-arrival: lspd_left -= 0.5; workers_spd -= 3; unemployed_spd -= 4; unemployment_insurance -= 1; reformist_dissent += 5; left_dissent += 5; labor_dissent += 5; green_dissent += 5; lspd_dissent += 1; lspd_relation -= 4 if lspd_in_government; lspd_relation -= 4
 subtitle: The increased levels of unemployment necessitate more spending on aid.
 
 Increasing welfare spending is necessary in light of the rise in unemployment, so we have essentially cut welfare. The workers are justifiably displeased - we are sacrificing their livelihoods to appease bourgeois demands for austerity.
 
-[? if in_popular_front or in_left_front: The KPD is turning against us for our welfare policy. ?]
+[? if lspd_in_government: The <span style="color: #BE3075;">**LSPD**</span> is turning against us for our welfare policy. ?]
