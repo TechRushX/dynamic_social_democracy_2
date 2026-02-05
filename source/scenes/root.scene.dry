@@ -104,7 +104,8 @@ Q.foreign_goal_spd_peoples = 0;
 Q.goal_spd_cancel_peoples = 0;
 Q.goal_spd_total_peoples = 0;
 
-
+Q.pensions = 0;
+Q.catholic_welfare = 0;
 
 
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
