@@ -21,27 +21,27 @@ if (Q.economic_growth) {
 Resources available: [+ resources +]
 
 SPD position: [? if spd_toleration : toleration ?][? if spd_in_government : in government - ?][? if spd_toleration == 0 and spd_in_government == 0 and spd_caretaker == 0 : opposition ?][? if spd_caretaker : caretaker government ?]
-[? if in_weimar_coalition and spd_in_government: Weimar Coalition ?][? if in_grand_coalition and spd_in_government: Grand Coalition ?][? if in_popular_front and spd_in_government: Popular Front ?][? if in_left_front and spd_in_government: Left Front ?][? if in_spd_majority and spd_in_government: SPD majority ?][? if in_minority_government and spd_in_government: minority government ?][? if in_emergency_government and spd_in_government: emergency government ?]
+[? if in_april_coalition and spd_in_government: April Coalition ?][? if in_left_bloc and spd_in_government: <span style="color: #c00000;">**Left Bloc**</span> ?][? if in_socialist_coalition and spd_in_government: Socialist Coalition ?][? if in_left_front and spd_in_government: Left Front ?][? if in_spd_majority and spd_in_government: SPD majority ?][? if in_minority_government and spd_in_government: minority government ?][? if in_emergency_government and spd_in_government: emergency government ?]
 
 [? if spd_government_burden_seen: Government Goals: [? if goal_spd_cancel == 0: [+ goal_spd_total +]?][? if goal_spd_cancel >= 1: Failed?] / 2 completed, due in [+ spd_government_burden_timer +] months ?]
 
 [? if spd_government_burden_peoples: Secondary Government Goals: [? if goal_spd_cancel_peoples == 0: [+ goal_spd_total_peoples +]?][? if goal_spd_cancel_peoples >= 1: Failed?] / 1 completed, due in [+ spd_government_burden_timer +] months ?]
 
-[? if spd_in_government and cvp_in_government: CVP coalition dissent: [+ cvp_coalition_dissent : coalition_dissent +] ?]
+= Coalition Dissent 
 
-[? if spd_in_government and csrp_in_government: CSRP coalition dissent: [+ csrp_coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and cvp_in_government: CVP dissent: [+ cvp_dissent : coalition_dissent +] ?]
 
-[? if spd_in_government and lspd_in_government: LSPD coalition dissent: [+ lspd_coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and lspd_in_government: LSPD dissent: [+ lspd_dissent : coalition_dissent +] ?]
 
-[? if spd_in_government and csrp_in_government: CSRP coalition dissent: [+ csrp_coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and csrp_in_government: CSRP dissent: [+ csrp_dissent : coalition_dissent +] ?]
 
-[? if spd_in_government and rdp_in_government: RDP coalition dissent: [+ rdp_coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and csrp_in_government: CSRP dissent: [+ csrp_dissent : coalition_dissent +] ?]
+
+[? if spd_in_government and rdp_in_government: RDP dissent: [+ rdp_dissent : coalition_dissent +] ?]
 
 Internal dissent: [+ dissent_percent : dissent +]
 
 Left Bloc Integrity: [+ left_unity : dissent +]
-
-Internal dissent: [+ dissent_percent : dissent +]
 
 = Government
 
@@ -99,8 +99,6 @@ Economic growth: [+ economic_growth_2 +]%
 {!<span class="tooltip-text" title="Labor's goal is economic reform and benefits for organized workers.">Labor</span>!} strength: [+ labor_strength : strength +], dissent: [+ labor_dissent : dissent +]
 
 {!<span class="tooltip-text" title="Reformists are pragmatic participants in government, and seek to expand the welfare state and defend democracy.">Reformist</span>!} strength: [+ reformist_strength : strength +], dissent: [+ reformist_dissent : dissent +]
-
-[? if neorevisionism > 0 : Neorevisionist strength: [+ neorevisionist_strength : strength +], dissent: [+ neorevisionist_dissent : dissent +] ?]
 
 
 @paramilitaries
