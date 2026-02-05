@@ -57,6 +57,7 @@ subtitle: The <span style="color: #FF7F00;">**CSRP**</span> will be most delight
 view-if: unemployment_insurance < 6
 choose-if: budget > 0
 on-arrival: budget -= 1; unemployment_insurance += 1; workers_spd += 2*(1-dissent); unemployed_spd += 4*(1-dissent); rdp_dissent += 1 if unemployment_insurance > 1; welfare_goal_completed += 1; inflation += 0.3; unemployed -= 0.2; economic_growth += 0.2;
+subtitle: -1 budget
 
 Our unemployment insurance program has faced a lot of attacks and cuts from the right. They are insisting we are promoting laziness and "ruining" the idealized version of a hardworking german. Nontheless, it stands as one of our proudest and most popular achievements, and a beacon of the <span style="color: #c00000;">social democratic</span> way of life.
 
