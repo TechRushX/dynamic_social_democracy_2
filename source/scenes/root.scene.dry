@@ -234,9 +234,9 @@ Q.budget = 4;
 // Proportion of different social groups
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 45, table 3.4 - using 1925 figures
 Q.workers = 48; // industry and trade
-Q.old_middle = 13; // "old mittelstand"
+Q.oligarchs = 30; // "old mittelstand"
 // 16.4 trade & commerce, 6.6 public and private services, 4.4 domestic help
-Q.new_middle = 14; // "new mittelstand"
+Q.middle = 34; // "new mittelstand"
 Q.rural = 25; // agriculture and forestry employment... but many of those are proletarians so...
 // source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
 Q.unemployed = 8.6;
@@ -264,7 +264,7 @@ Q.unemployed_qol = 100;
 Q.old_middle_qol = 100;
 Q.new_middle_qol = 100;
 
-Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
+Q.classes = ['workers', 'middle', 'oligarchs', 'rural', 'unemployed', 'catholics'];
 Q.parties = ['spd', 'lspd', 'csrp', 'rdp', 'cvp', 'nlp', 'dnvp', 'ndpd', 'other'];
 
 // TODO: add 'sapd' later on
@@ -282,25 +282,25 @@ Q.workers_dnvp = 5;
 Q.workers_ndpd = 0;
 Q.workers_other = 10;
 
-Q.old_middle_spd = 5;
-Q.old_middle_lspd = 0;
-Q.old_middle_csrp = 5;
-Q.old_middle_rdp = 10;
-Q.old_middle_cvp = 15;
-Q.old_middle_nlp = 10;
-Q.old_middle_dnvp = 25;
-Q.old_middle_ndpd = 10;
-Q.old_middle_other = 10;
+Q.middle_spd = 5;
+Q.middle_lspd = 0;
+Q.middle_csrp = 5;
+Q.middle_rdp = 10;
+Q.middle_cvp = 15;
+Q.middle_nlp = 10;
+Q.middle_dnvp = 25;
+Q.middle_ndpd = 10;
+Q.middle_other = 10;
 
-Q.new_middle_spd = 5;
-Q.new_middle_lspd = 1;
-Q.new_middle_csrp = 10;
-Q.new_middle_rdp = 25;
-Q.new_middle_cvp = 4;
-Q.new_middle_nlp = 25;
-Q.new_middle_dnvp = 10;
-Q.new_middle_ndpd = 5;
-Q.new_middle_other = 15;
+Q.oligarchs_spd = 0;
+Q.oligarchs_lspd = 0;
+Q.oligarchs_csrp = 10;
+Q.oligarchs_rdp = 25;
+Q.oligarchs_cvp = 4;
+Q.oligarchs_nlp = 25;
+Q.oligarchs_dnvp = 10;
+Q.oligarchs_ndpd = 5;
+Q.oligarchs_other = 15;
 
 Q.rural_spd = 10;
 Q.rural_lspd = 0;
