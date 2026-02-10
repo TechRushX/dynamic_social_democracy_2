@@ -26,7 +26,7 @@ With control of the Labor Ministry, we can set national standards for labor. Our
 - @easy_discard
 - @cancel_advisor_action
 
-@working_hours
+@minimum_wage
 view-if: minmum_wage < 15
 on-arrival: minimum wage += 1; labor_dissent -= 8; left_dissent -= 5; labor_strength += 5; workers_spd += 7*(1-dissent); rdp_left -= 1 if rdp_in_government; rdp_relation -= 4; rdp_coalition_dissent += 1; capital_strike_progress += 1 if rdp_relation <= 30; labor_goal_completed = 1; inflation += 0.1; economic_growth += 0.1; oligarchs_rdp -= 2;
 
