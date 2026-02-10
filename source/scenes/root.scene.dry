@@ -78,6 +78,7 @@ Q.dnvp_left = 0
 Q.tv = 0
 Q.eu_advocacy = 0
 
+Q.minimum_wage = 8
 
 Q.spd_government_burden_seen = 0;
 Q.spd_government_burden_trigger = 0;
