@@ -75,6 +75,32 @@ Q.nlp_left = 0
 Q.dnvp_left = 0
 
 
+Q.ndpd_in_pb = 1
+Q.cvp_in_pb = 1
+Q.nlp_in_pb = 1
+Q.peoples_bloc_exists = 1
+
+Q.lspd_in_lb = 1
+Q.rdp_in_lb = 1
+Q.csrp_in_lb = 1
+Q.left_bloc_exists = 1
+
+Q.lspd_exists = 1
+Q.csrp_exists = 1
+Q.others_exists = 1
+Q.rdp_exists = 1
+Q.nlp_exists = 1
+Q.dnvp_exists = 1
+Q.dkp_exists = 0
+Q.dnf_exists = 0
+Q.bsw_exists = 0
+
+Q.true_cvp_formed = 0
+Q.grand_cvp_formed = 0
+Q.light_cvp_formed = 0
+Q.lvp_formed = 0
+
+
 Q.tv = 0
 Q.eu_advocacy = 0
 
