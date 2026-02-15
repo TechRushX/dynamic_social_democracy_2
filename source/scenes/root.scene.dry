@@ -284,13 +284,13 @@ Q.workers_dnvp = 5;
 Q.workers_ndpd = 0;
 Q.workers_other = 10;
 
-Q.middle_spd = 5;
+Q.middle_spd = 20;
 Q.middle_lspd = 0;
 Q.middle_csrp = 5;
 Q.middle_rdp = 10;
-Q.middle_cvp = 15;
+Q.middle_cvp = 10;
 Q.middle_nlp = 10;
-Q.middle_dnvp = 25;
+Q.middle_dnvp = 15;
 Q.middle_ndpd = 10;
 Q.middle_other = 10;
 
@@ -497,12 +497,12 @@ Q.reichswehr_minister = 'Groener';
 Q.reichswehr_minister_party = 'I';
 Q.finance_minister = 'Köhler';
 Q.finance_minister_party = 'Z';
-Q.energy_infra_minister = "WIP"
-Q.energy_infra_minister_party = "WIP"
+Q.economy_minister = "WIP"
+Q.economy_minister_party = "WIP"
 Q.environment_minister = "WIP"
 Q.environment_minister_party = "WIP"
-Q.health_edu_minister = "WIP"
-Q.health_edu_minister_party = "WIP"
+Q.welfare_minister = "WIP"
+Q.welfare_minister_party = "WIP"
 
 
 // Events: what has occurred?
