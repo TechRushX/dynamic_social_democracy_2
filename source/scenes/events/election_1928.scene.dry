@@ -1465,7 +1465,7 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
 view-if: finance_minister_party != "SPD"
-on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
+on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"; rdp_left -= 1
 go-to: ministries
 
 Rudolf Hilferding of the <span style="color: #c00000;">**SPD**</span> has been appointed Finance Minister.
@@ -1477,14 +1477,14 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
 view-if: environment_minister_party != "SPD"
-on-arrival: leverage -= 10; environment_minister_party = "SPD"; environment_minister = "Schmidt"
+on-arrival: leverage -= 10; environment_minister_party = "SPD"; environment_minister = "Schmidt"; rdp_left -= 1
 go-to: ministries
 
 Robert Schmidt of the <span style="color: #c00000;">**SPD**</span> has been appointed Environment Minister.
 
-@health_edu
-title: Health & Education Ministry
-subtitle: The <span style="color: #FF7F00;">**CSRP**</span> usually manages this, however they wouldn’t make loud objections without it.
+@welfare
+title: Welfare Ministry
+subtitle: The Welfare ministry handles education and healthcare related matters. The <span style="color: #FF7F00;">**CSRP**</span> usually manages this, however they wouldn’t make loud objections without it.
 unavailable-subtitle: We do not have enough leverage.
 choose-if: leverage >= 10 
 view-if: health_edu_minister_party != "SPD"
@@ -1519,17 +1519,17 @@ go-to: ministries
 Rudolf Breitscheid of the <span style="color: #c00000;">**SPD**</span> has been appointed Foreign Minister.
 
 
-@energy_infra
-title: Energy & Infrastructure Ministry
-subtitle: This is not our usual domain.
+@economic
+title: Economic Ministry
+subtitle: The Economic ministry handles affairs related to infrastructure and energy.
 unavailable-subtitle: We do not have enough leverage.
 choose-if: leverage >= 10 
-view-if: energy_infra_minister_party != "SPD"
-on-arrival: leverage -= 10; energy_infra_minister_party = "SPD"; energy_infra_minister = "Baade"
+view-if: economic_minister_party != "SPD"
+on-arrival: leverage -= 10; economic_minister_party = "SPD"; energy_infra_minister = "Baade"
 go-to: ministries
 tags: mins_1928
 
-Fritz Baade of the <span style="color: #c00000;">**SPD**</span> has been appointed Energy & Infrastructure Minister.
+Fritz Baade of the <span style="color: #c00000;">**SPD**</span> has been appointed Economic Minister.
 
 @reichswehr
 title: Reichswehr Ministry
@@ -1580,10 +1580,10 @@ on-arrival: environment_minister_party = "WIP"; economic_minister = "WIP"; lever
 tags: drop_mins_1928
 go-to: ministries
 
-@drop_health_edu
-title: Drop the Health & Education Ministry.
-view-if: health_edu_minister_party = "SPD"
-on-arrival: health_edu_minister_party = "WIP"; health_edu_minister = "WIP"; leverage += 10;
+@drop_welfare
+title: Drop the Welfare Ministry.
+view-if: welfare_minister_party = "SPD"
+on-arrival: welfare_minister_party = "WIP"; welfare_minister = "WIP"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
@@ -1601,10 +1601,10 @@ on-arrival: foreign_minister_party = "WIP"; foreign_minister = "WIP"; leverage +
 tags: drop_mins_1928
 go-to: ministries
 
-@drop_energy_infra
-title: Drop the Energy & infrastructure Ministry
-view-if: energy_infra_minister_party = "SPD"
-on-arrival: energy_infra_minister_party = "WP"; energy_infra_minister = "WIP"; leverage += 10; 
+@drop_economic
+title: Drop the Economic Ministry.
+view-if: economic_minister_party = "SPD"
+on-arrival: economic_minister_party = "WP"; economic_minister = "WIP"; leverage += 10; 
 tags: drop_mins_1928
 go-to: ministries
 
