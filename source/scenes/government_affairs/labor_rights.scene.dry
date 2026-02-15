@@ -28,7 +28,7 @@ With control of the Labor Ministry, we can set national standards for labor. Our
 
 @minimum_wage
 view-if: minmum_wage < 15
-on-arrival: minimum wage += 1; labor_dissent -= 8; left_dissent -= 5; labor_strength += 5; workers_spd += 7*(1-dissent); rdp_left -= 1 if rdp_in_government; rdp_relation -= 4; rdp_dissent += 1; capital_strike_progress += 1 if rdp_relation <= 30; labor_goal_completed = 1; inflation += 0.1; economic_growth += 0.1; oligarchs_rdp -= 2;
+on-arrival: minimum_wage += 1; labor_dissent -= 8; left_dissent -= 5; labor_strength += 5; workers_spd += 7*(1-dissent); rdp_left -= 1 if rdp_in_government; rdp_relation -= 4; rdp_dissent += 1; capital_strike_progress += 1 if rdp_relation <= 30; labor_goal_completed = 1; inflation += 0.1; economic_growth += 0.1; oligarchs_rdp -= 2;
 
 While a minimum wage was obtained during the third Merkel cabinet in 2015 after large union pressure and nationwide protests, the capitalists, through the <span style="color: #98C22C;">**NLP**</span> have heavily watered down the proposal - just enough to prevent further backlash, but not to a large enough scale as to truly reduce economic inequality. Ever since then, increasing the minimum wage to a liveable one has been an important part of our campaigning.
 
