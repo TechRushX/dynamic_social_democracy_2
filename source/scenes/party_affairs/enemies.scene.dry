@@ -13,34 +13,39 @@ In our media and campaign materials, who should we consider as our main opponent
 
 [? if enemies != 0 : Previously, we had considered the [+ enemies +] as our prior enemies. Is a change of direction necessary? ?]
 
-- @anti_dem: The anti-democratic parties of the far right and left - the KPD, NSDAP, and DNVP.
-- @far_right: The far right - the NSDAP and DNVP.
-- @nsdap: The NSDAP alone.
-- @kpd: The KPD.
-- @bourgeois: The bourgeois parties - the Center and DVP.
+- @people_bloc: The People's Bloc - the <span style="color: #000000;">**CVP**</span> [? if nlp_exists:, <span style="color: #98C22C;">**NLP**</span>, ?] [? if dnvp_exists: <span style="color: #3E88B3;">**DNVP**</span> ?] [? if ndpd_in_pb: and <span style="color: #D79E2A;">**NDPD**</span ?], our natural enemies.
+- @far_right: The far right - the <span style="color: #D79E2A;">**NDPD**</span> and <span style="color: #3E88B3;">**DNVP**</span>.
+- @ndpd: The <span style="color: #D79E2A;">**NDPD**</span> alone.
+- @lspd: The <span style="color: #BE3075;">**LSPD**</span> [? if bsw_exists: and <span style=”color: #C40000;”>**BSW**</span> ?].
+- @bourgeois: The bourgeois parties - the <span style="color: #000000;">**CVP**</span> and <span style="color: #98C22C;">**NLP**</span>.
 - @easy_discard
 
-@anti_dem
-on-arrival: enemies = "anti-democratic parties"; center_strength += 5; reformist_strength += 5; left_dissent += 5; workers_kpd -= 2; workers_nsdap -= 2; workers_dnvp -= 2; kpd_relation -= 10
+@people_bloc
+on-arrival: enemies = "People's Bloc"; workers_cvp -= 2; workers_ndpd -= 2 if ndpd_in_pb; workers_dnvp -= 1; workers_nlp -= 1; cvp_relation -= 3
 
-Attacking the far right and left is popular among all but the left wing of our party, who would prefer to be fighting the bourgeois parties. This might also hamper our ability to reconcile with the KPD in the future.
+Attacking the People's Bloc is the most inoffensive choice we could take, but also the least effective.
 
 @far_right
-on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_nsdap -= 3; workers_dnvp -= 3;
+view-if: dnvp_exists = 1
+on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_ndpd -= 3; workers_dnvp -= 3;
 
-Attacking the far right is popular among the entire party, although the left considers the bourgeois parties to be just as dangerous, while the right is critical of our lack of response to the KPD. Our bourgeois coalition partners are also skeptical of our lack of commitment to anti-communism.
+Attacking the far right is popular among the entire party, although the left considers the bourgeois parties to be just as dangerous [? if bsw_exists:, while the right is critical of our lack of response to the <span style=”color: #C40000;”>**BSW**</span> ?]. Our bourgeois coalition partners are also skeptical of our lack of commitment to anti-communism.
 
-@nsdap
-on-arrival: enemies = "NSDAP"; neorevisionist_strength += 5; nazi_urgency += 1; workers_nsdap -= 4;
+@ndpd
+on-arrival: enemies = "<span style="color: #D79E2A;">**NDPD**</span>"; nazi_urgency += 1; workers_ndpd -= 4;
 
-[? if nazi_urgency == 0 or nsdap_r < 10 : The NSDAP is a tiny party right now, with more bark than bite. Many in our party are questioning our choices. ?][? if nazi_urgency > 0 and nsdap_r >= 10 : The Nazis are the most urgent problem for us to deal with. ?]
+[? if nazi_urgency == 0 or ndpd_r < 10 : The NDPD is a tiny party right now, with more bark than bite. Many in our party are questioning our choices. ?][? if nazi_urgency > 0 and ndpd_r >= 10 : The <span style="color: #D79E2A;">Neo-Nazis</span> are the most urgent problem for us to deal with. ?]
 
-@kpd
-on-arrival: enemies = "KPD"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; kpd_relation -= 15; dvp_relation += 5; z_relation += 5; workers_kpd -= 4;
+@lspd
+view-if: lspd_exists = 1
+choose-if: lspd_in_lb = 0 and lspd_in_government = 0
+unavailable-subtitle: Why would we attack our allies?
+on-arrival: enemies = "far left"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; lspd_relation -= 15; cvp_relation += 5; cvp_left += 0.5; rdp_relation += 5;rdp_left += 1; workers_lspd -= 4;
 
-Attacking the KPD is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, If we are to reconcile with the KPD, this may not be the best choice.
+Attacking the <span style="color: #BE3075;">**LSPD**</span> [? if bsw_exists: and <span style=”color: #C40000;”>**BSW**</span> ?] is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, if we are to reconcile with the <span style="color: #BE3075;">**left**</span>, this may not be the best choice.
 
 @bourgeois
-on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; dvp_relation -= 5; z_relation -= 5; kpd_relation += 5; reformist_dissent += 8; workers_z -= 3; coalition_dissent += 1
+view-if: nlp_exists = 1
+on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; cvp_relation -= 5; csrp_relation -= 5; lspd_relation += 5; cvp_left -= 2; csrp_left -= 1; reformist_dissent += 8; workers_cvp -= 3; csrp_coalition_dissent += 1
 
 Our anti-bourgeois rhetoric is popular among the left, but may make it harder to build the coalitions that are necessary for government in the future.
