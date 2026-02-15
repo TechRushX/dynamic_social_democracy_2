@@ -75,7 +75,7 @@ Q.nlp_left = 0
 Q.dnvp_left = 0
 
 
-Q.ndpd_in_pb = 1
+Q.ndpd_in_pb = 0
 Q.cvp_in_pb = 1
 Q.nlp_in_pb = 1
 Q.peoples_bloc_exists = 1
