@@ -13,7 +13,7 @@ tags: party_affairs
 
 The party is being torn apart by internal dissent. Upset at the leadership and general direction, factions have started sabotaging their rivals, hampering our efforts to win votes and carry out our policies.
 
-[? if reformist_dissent > 30 : The reformists are upset at our direction.  ?]
+[? if reformist_dissent > 30 : The reformists are upset at our direction. ?]
 [? if green_dissent > 30 : The greens are displeased with the direction of our party. ?]
 [? if labor_dissent > 30 : The trade unions disagree with our present course of action. ?]
 [? if left_dissent > 30: Leftists are making noises about another party split. ?]
@@ -30,7 +30,7 @@ Something must be done to reinforce party unity.
 
 @enforce_unity
 title: Enforce party discipline.
-on-arrival: reformist_dissent -= 5; green_dissent -= 5; labor_dissent -= 5; left_dissent -= 5; workers_spd -= 4; new_middle_spd -= 2; unemployed_spd -= 2
+on-arrival: reformist_dissent -= 5; green_dissent -= 5; labor_dissent -= 5; left_dissent -= 5; workers_spd -= 4; middle_spd -= 2; unemployed_spd -= 2
 
 Enforcing party discipline reduces dissent, but it could lead to an exit of dissenting members.
 
@@ -48,7 +48,7 @@ We have promised to adopt a more reformist posture. This may alienate the left, 
 @concessions_green
 title: Give concessions to the greenss.
 view-if: green_dissent > 30
-on-arrival: center_dissent -= 7; reformist_dissent += 2; left_dissent += 2
+on-arrival: green_dissent -= 7; reformist_dissent += 2; left_dissent += 2
 
 We have promised to take more policy suggestions from the greens. Both the left and reformist wings of the party might be displeased.
 
