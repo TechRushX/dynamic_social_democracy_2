@@ -12,7 +12,7 @@ The social welfare program, including unemployment insurance, healthcare, and ol
 
 - @reduce_spending: Reduce spending on welfare.
 - @pensions: Increase old age pensions.
-- @catholic_welfare: Boost government donations to <span style="color: #FF7F00;">**christian**</span> welfare organizations.
+- @catholic_welfare: Boost government donations to <span style="color: #FF7F00;">christian</span> welfare organizations.
 - @unemployment_insurance_pre_depression: Enlargen the unemployment insurance program.
 - @spending_same_pre_depression: Keep spending the same.
 - @spending_same_post_depression: Keep spending the same (effectively a service cut).
@@ -44,7 +44,7 @@ We have increased pensions. Our usual base is pleased, along with the older rura
 @catholic_welfare
 view-if: catholic_welfare < 6
 choose-if: budget > 0
-on-arrival: budget -= 1; catholic_welfare += 1; workers_spd += 3*(1-dissent); unemployed_spd += 2*(1-dissent); catholics_spd += 2*(1-dissent); csrp_dissent -= 1 if csrp_dissent > 0; rdp_dissent += 0.5 if catholic_welfare > 2; welfare_goal_completed += 1; inflation += 0.3
+on-arrival: budget -= 1; catholic_welfare += 1; workers_spd += 3*(1-dissent); unemployed_spd += 2*(1-dissent); catholics_spd += 2*(1-dissent); csrp_dissent -= 1 if csrp_dissent > 0; rdp_dissent += 0.5 if catholic_welfare > 2; welfare_goal_completed += 1; inflation += 0.3; finance_goal_spd_peoples = 0;
 subtitle: The <span style="color: #FF7F00;">**CSRP**</span> will be most delighted. -1 Budget
 
 *Caritas Deutschland* has been a cornerstone of german welfare. This is primarly due to it historically being the least controversial option for the <span style="color: #000000;">**CVP**</span> to increase social security as part of a <span style="color: #000000;">**People's Bloc**</span> coalition. As for the <span style="color: #c00000;">**Left Bloc**</span>, the <span style="color: #FF7F00;">**CSRP**</span> is content to be in a coalition with us despite our avid promotion of secularism, along with <span style="color: red;">Ho</span><span style="color: orange;">m</span><span style="color: yellow;">o</span><span style="color: green;">se</span><span style="color: blue;">xu</span><span style="color: purple;">al</span> and women's rights, as long as catholic welfare is respected.
@@ -61,7 +61,7 @@ subtitle: -1 budget
 
 Our unemployment insurance program has faced a lot of attacks and cuts from the right. They are insisting we are promoting laziness and "ruining" the idealized version of a hardworking german. Nontheless, it stands as one of our proudest and most popular achievements, and a beacon of the <span style="color: #c00000;">social democratic</span> way of life.
 
-Increasing its scope leaves us better prepared in case of economic downturn, along with boosting support with the jobless and ease of anxiety amongst the working class, who now feel less insecure about losing their posts. [? if catholic_welfare > 2: Christian Lindner and the <span style="color: #E0B0FF;">**RDP**</span> are complaining that we are unjustifiably funding the program, considering the sums given out are considered "liveable and temporary". ?]
+Increasing its scope leaves us better prepared in case of economic downturn, along with boosting support with the jobless and ease of anxiety amongst the working class, who now feel less insecure about losing their posts. [? if unemployment_insurance > 2: Christian Lindner and the <span style="color: #E0B0FF;">**RDP**</span> are complaining that we are unjustifiably funding the program, considering the sums given out are considered "liveable and temporary". ?]
 
 @spending_same_pre_depression
 view-if: unemployed <= 10
