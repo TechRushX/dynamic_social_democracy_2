@@ -93,7 +93,7 @@ The reformist message appeals to the organized workers, whose benefits are the a
 @europe
 on-arrival: eu_advocacy += 1; pro_eu += 2*(1 - dissent); workers_spd += 4*(1-dissent) if eu_advocacy >= 3; unemployed_spd += 3*(1-dissent) if eu_advocacy >= 3; pro_eu += 4*(1 - dissent) if eu_advocacy >= 3; middle_spd += 4*(1-dissent) if eu_advocacy >= 3 
 
-Our speakers defend the <span style="color: #001489;">Euro</span><span style="color: #FFDD00;">pean</span> system and rail hard against the <span style="color: #D79E2A;">**nationalists**</span> who threaten it. Despite its flaws, neo-imperalist tendencies and need of reform, it is still undoubtedly one of the biggest achievements of <span style="color: #c00000;">**social democracy**</span>.
+Our speakers defend the <span style="color: #001489;">Euro</span><span style="color: #FFDD00;">pean</span> system and rail hard against the <span style="color: #D79E2A;">nationalists</span> who threaten it. Despite its flaws, neo-imperalist tendencies and need of reform, it is still undoubtedly one of the biggest achievements of <span style="color: #c00000;">social democray</span> </span>.
 
 [? if eu_advocacy < 3 : Talks of grander <span style="color: #001489;">E</span><span style="color: #FFDD00;">U</span> reform does not excite the workers as much as more practical issues. But that may change; part of our job is to provide political education to the proletariat. ?]
 [? if democratization >= 3 : Since we have consistently made the <span style="color: #001489;">E</span><span style="color: #FFDD00;">U</span> a theme of our campaign, the workers are enthusiastic about our message. ?]
