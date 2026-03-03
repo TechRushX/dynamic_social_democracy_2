@@ -13,7 +13,7 @@ In our media and campaign materials, who should we consider as our main opponent
 
 [? if enemies != 0 : Previously, we had considered the [+ enemies +] as our prior enemies. Is a change of direction necessary? ?]
 
-- @people_bloc: The People's Bloc - the <span style="color: #000000;">**CVP**</span> [? if nlp_exists:, <span style="color: #98C22C;">**NLP**</span>, ?] [? if dnvp_exists: <span style="color: #3E88B3;">**DNVP**</span> ?] [? if ndpd_in_pb: and <span style="color: #D79E2A;">**NDPD**</span ?], our natural enemies.
+- @people_bloc: The People's Bloc - the <span style="color: #000000;">**CVP**</span> [? if nlp_exists:, <span style="color: #98C22C;">**NLP**</span>, ?] [? if dnvp_exists: <span style="color: #3E88B3;">**DNVP**</span> ?] [? if ndpd_in_pb: and <span style="color: #D79E2A;">**NDPD**</span ?] - our natural enemies.
 - @far_right: The far right - the <span style="color: #D79E2A;">**NDPD**</span> and <span style="color: #3E88B3;">**DNVP**</span>.
 - @ndpd: The <span style="color: #D79E2A;">**NDPD**</span> alone.
 - @lspd: The <span style="color: #BE3075;">**LSPD**</span>[? if bsw_exists: and <span style=”color: #C40000;”>**BSW**</span> ?].
