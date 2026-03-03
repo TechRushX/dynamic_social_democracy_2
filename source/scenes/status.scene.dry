@@ -35,8 +35,6 @@ SPD position: [? if spd_toleration : toleration ?][? if spd_in_government : in g
 
 [? if spd_in_government and csrp_in_government: CSRP dissent: [+ csrp_dissent : coalition_dissent +] ?]
 
-[? if spd_in_government and csrp_in_government: CSRP dissent: [+ csrp_dissent : coalition_dissent +] ?]
-
 [? if spd_in_government and rdp_in_government: RDP dissent: [+ rdp_dissent : coalition_dissent +] ?]
 
 Internal dissent: [+ dissent_percent : dissent +]
