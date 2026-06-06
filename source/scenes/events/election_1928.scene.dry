@@ -1487,8 +1487,8 @@ title: Welfare Ministry
 subtitle: The Welfare ministry handles education and healthcare related matters. The <span style="color: #FF7F00;">**CSRP**</span> usually manages this, however they wouldn’t make loud objections without it.
 unavailable-subtitle: We do not have enough leverage.
 choose-if: leverage >= 10 
-view-if: health_edu_minister_party != "SPD"
-on-arrival: leverage -= 10; health_edu_minister_party = "SPD"; health_edu_minister = "Baade"
+view-if: welfare_minister_party != "SPD"
+on-arrival: leverage -= 10; welfare_minister_party = "SPD"; welfare_minister = "Baade"
 go-to: ministries
 tags: mins_1928
 
